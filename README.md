@@ -1,2 +1,2 @@
-# Labs and Assignments Yeehaw
+# Labs and Assignments 
 Turn in items here:
