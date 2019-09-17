@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smartphone Store</title>
+    <link rel="stylesheet" href="products-style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&effect=font-effect-fire-animation">
+</head>
+
+<Body>
+    <header>
+        <h1 id="demo" onmouseover="mouseOver()" onmouseout="mouseOut()">Used Smartphone Store</h1>
+    </header>
+    <div>
+
+        
+           
+
+        <main>
+
+            <section class="item">
+                <h2>HTC</h2>
+                <p>$40.00</p>
+                <img src="http://dport96.github.io/ITM352/morea/090.flow-control-II/HTC.jpg">
+            </section>
+
+            <section class="item">
+                <h2>Apple</h2>
+                <p>$75.00</p>
+                <img src="http://dport96.github.io/ITM352/morea/090.flow-control-II/iphone-3gs.jpg">
+            </section>
+
+            <section class="item">
+                <h2>Nokia</h2>
+                <p>$35.00</p>
+                <img src="http://dport96.github.io/ITM352/morea/090.flow-control-II/Nokia.jpg">
+            </section>
+
+            <section class="item">
+                <h2>Samsung</h2>
+                <p>$45.00</p>
+                <img src="http://dport96.github.io/ITM352/morea/090.flow-control-II/Samsung.jpg">
+            </section>
+
+            <input id="speedSlider" type="range" min=".1" max="5" step=".1" onchange="
+            localStyle.innerHTML = '.rotate img {animation-duration: ' + speedSlider.value + 's;}';
+            " style="direction: rtl;" />
+    
+
+            <section class="item">
+                <h2>Blackberry</h2>
+                <p>$10.00</p>
+                <img src="http://dport96.github.io/ITM352/morea/090.flow-control-II/Blackberry.jpg">
+            </section>
+            
+        </main>
+    </div>
+    <footer>
+        <h1 id="demon" onmouseover="mouseOver()" onmouseout="mouseOut()">Your One Stop Phone Shop</h1>
+    </footer>
+
+    <Script>
+
+        function mouseOver() {
+            document.getElementById("demo").style.color = "blue";
+            document.getElementById("demon").style.color = "blue";
+        }
+
+        function mouseOut() {
+            document.getElementById("demo").style.color = "black";
+            document.getElementById("demon").style.color = "black";
+        }
+    </Script>
+
+
+</Body>
+
+</html>
