@@ -1,0 +1,84 @@
+
+/* General */
+body {
+    width: 800px; 
+    margin: 0 auto;
+}
+
+/* Typography */
+h2 {
+
+    text-align: center;
+    color: yellow;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    
+}
+
+p {
+    color: yellow;
+    text-align: center;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+
+/* Form Stylying */
+
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background: url(./Images/phone_globe.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Block Stylying */
+
+div {
+    border: 5px solid black;
+    display: flex;
+}
+
+/* Styling Products Display */
+
+.item img {
+    height: 200px;
+    width: 200px;   
+    animation: rotation 6s infinite linear;
+}
+
+
+img {
+    border: 1px solid yellow;
+    /* Gray border */
+    border-radius: 360px;
+    /* Rounded border */
+    padding: 0px;
+    /* Some padding */
+    width: 150px;
+    /* Set a small width */
+    animation: rotation 6s infinite linear;
+}
+
+img:hover {
+    box-shadow: 0px 0px 1px 5px black;
+}
+
+footer , header {
+    background-color: cyan;
+    border: 5px solid black;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
