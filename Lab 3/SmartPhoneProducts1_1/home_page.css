@@ -18,7 +18,7 @@ img {
     width: 690px;
     /* Set a small width */
     height: 690px;
-    animation: rotation 6s infinite linear;
+    
 }
 
 
@@ -36,7 +36,9 @@ div {
     background-color: blueviolet;
 }
 
-
+.rotate image {
+  animation: rotation .3s infinite linear;
+}
 
 @keyframes rotation {
   from {
