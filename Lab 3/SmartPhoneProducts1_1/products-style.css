@@ -48,7 +48,6 @@ div {
 .item img {
     height: 200px;
     width: 200px;   
-    animation: rotation 6s infinite linear;
 }
 
 
@@ -61,7 +60,6 @@ img {
     /* Some padding */
     width: 150px;
     /* Set a small width */
-    animation: rotation 6s infinite linear;
 }
 
 img:hover {
@@ -72,6 +70,10 @@ footer , header {
     background-color: cyan;
     border: 5px solid black;
 }
+
+.rotate img {
+    animation: rotation .3s infinite linear;
+  }
 
 @keyframes rotation {
     from {
