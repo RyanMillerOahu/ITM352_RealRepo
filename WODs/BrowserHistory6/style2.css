@@ -1,0 +1,81 @@
+body {
+    font-family: Open Sans;
+    color: yellow;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 950px;
+    background-color: black;
+
+}
+h1, h2 {
+    font-family: "Oswald", sans;
+}
+
+img {
+    float: left;
+    margin-right: 10px
+}
+
+#wrap {
+    width: 950px;
+}
+
+.left {
+    float: left;
+    width: 300px;
+    padding: 2px;
+    padding-top: 10px; 
+    overflow: hidden;
+}
+
+.right {
+    float: left;
+    width: 300px;
+    padding: 2px;
+    padding-top: 10px; 
+    overflow: hidden;
+
+}
+
+.center {
+    float: left;
+    width: 300px;
+    padding: 2px;
+    padding-top: 10px;
+    overflow: hidden;
+  
+}
+
+ul {
+    list-style-type: none;
+    margin: none;
+    padding: none;
+}
+
+li {
+    display: inline;
+    padding: 0px;
+    margin: 0%
+
+}
+
+a {
+    color: red;
+}
+
+#booton {
+    background-color: black;
+    font-size: 30px ;
+    padding: 0 px;
+    padding-top: 0px ;
+    scroll-padding-bottom: 0px ;
+    color: yellow;
+}
+
+#imgbox {
+    height: 200px;    
+}
+
+
