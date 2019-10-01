@@ -1,0 +1,47 @@
+/* Invoice page */
+
+<script>
+
+// Product Data
+     // Product 1
+     var item1 = 'Hammer';
+     var quantity1 = 2;
+     var price1 = 150;
+
+     // Product 2
+     var item2 = 'Sickle';
+     var quantity2 = 2;
+     var price2 = 100;
+
+     // Product 3
+     var item3 = 'Spear';
+     var quantity3 = 2;
+     var price3 = 200;
+
+     // Product 4
+     var item4 = 'Sword';
+     var quantity4 = 2;
+     var price4 = 175;
+
+     // Product 5
+     var item5 = 'Shield';
+     var quantity5 = 2;
+     var price5 = 125;
+
+// Compute Extened Prices
+     var extended_price1 = quantity1 * price1;
+     var extended_price2 = quantity2 * price2;
+     var extended_price3 = quantity3 * price3;
+     var extended_price4 = quantity4 * price4;
+     var extended_price5 = quantity5 * price5;
+
+// Sale Subtotal
+     var subtotal = "$" + (extended_price1 + extended_price2 + extended_price3 + extended_price4 + extended_price5);
+
+// Taxes
+     var taxes = "$" + (subtotal * 0.0575);
+
+// Total
+     var total = taxes + subtotal; 
+
+</script>
