@@ -1,0 +1,34 @@
+<span id="pickle"></span>
+<br>
+
+<script>
+name = "Ryan";
+
+likesBeer = true;
+
+if ( likesBeer ) {
+
+    document.write('I like beer');
+}
+else {
+    document.write('Beer is something I dilike');
+}
+
+// -- Price depends on quantity
+quantity = 100 ;
+
+if ( quantity > 0 ) {
+    price = 100;
+    if ( quantity >= 10 ) {
+        price = 50 ;
+        if ( quantity >= 25 ) {
+            price = 35;
+        }
+    }
+}
+else
+    price = "no purchase" ;
+
+document.getElementById("pickle").innerHTML = ( quantity + ' products will cost ' + price + ' each.' ) ;
+
+</script>
