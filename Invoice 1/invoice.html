@@ -12,45 +12,6 @@
 
 <body>
 
-    <table id="InvoiceTable">
-        <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Extended Price</th>
-        </tr>
-        <tr id="row1">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr id="myRow">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-
     <button onclick="myFunction()">Run Invoice</button>
 
     <script>
@@ -137,6 +98,18 @@
   var x = row.insertCell(2);
   x.innerHTML = item1;
 }
+
+document.write(`
+        <table border="1">
+            <tr><th>Line</th><th>Name</th></tr>
+            <tr><td>${item1}</td><td>${quantity1}</td><td>${price1}</td><td>${extended_price1}</td></tr>
+            <tr><td>2.</td><td>
+                ${first_name}</td></tr>
+            <tr><td>3.</td><td>${first_name}</td></tr>
+            <tr><td>4.</td><td>'${first_name}'</td></tr>
+            <tr><td>5.</td><td>"${first_name}"</td></tr>
+        </table>
+        `);
         
     </script>
 
