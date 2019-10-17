@@ -18,54 +18,69 @@
 
 <script>
 //Product Quantities
-    product_quantities[10,2,3,2,1];
+    var product_quantities = [10,2,3,2,1];
+
+    document.write(`
+    <table style="border: 1px solid black;text-align: center;">
+<tr style="border: 1px solid black;"><th style="border: 1px solid black;">Product #</th><th>Quanity</th></tr>
+`);
+
+for (i=0; i<product_quantities.length ; i++){
+
+document.write(`
+<tr style="border: 1px solid black;"><td style="border: 1px solid black;">${i +1}</td><td>${product_quantities[i]}</td></tr>
+`)
+}
+document.write(`</table>`);
     
 //Product 1 Object
     product1object = {productName: "Hammer", itemQuantity: product_quantities[0], price: 150};
 
 //Product 2 Object
-    product2object = {productName: "Sickle", itemQuantity: product_quantities[1], "price": 100};
+    product2object = {productName: "Sickle", itemQuantity: product_quantities[1], price: 100};
 
 //Product 3 Object
-    product3object = {productName: "Spear", itemQuantity: product_quantities[2], "price": 200};
+    product3object = {productName: "Spear", itemQuantity: product_quantities[2], price: 200};
 
 //Product 4 Object
-    product4object = {productName: "Sword", itemQuantity: product_quantities[3], "price": 175};
+    product4object = {productName: "Sword", itemQuantity: product_quantities[3], price: 175};
 
 //Product 5 Object
-    product5object = {productName: "Sheild", itemQuantity: product_quantities[4], "price": 125};
+    product5object = {productName: "Sheild", itemQuantity: product_quantities[4], price: 125};
 
-
-
-    /* Invoice page */
-    // Product Data
+    // Product 1 
+    var item1 =  product1object.productName;
+    var quantity1 =  product1object.itemQuantity;
+    var price1 =  product1object.price;
 
     // Product 2
-    var item2 = 'Sickle';
-    var quantity2 = 2;
-    var price2 = 100;
+    var item2 = product2object.productName;
+    var quantity2 = product2object.itemQuantity;
+    var price2 = product2object.price;
 
     // Product 3
-    var item3 = 'Spear';
-    var quantity3 = 3;
-    var price3 = 200;
+    var item3 = product3object.productName;
+    var quantity3 = product3object.itemQuantity;
+    var price3 = product3object.price;
 
     // Product 4
-    var item4 = 'Sword';
-    var quantity4 = 2;
-    var price4 = 175;
+    var item4 = product4object.productName;
+    var quantity4 = product4object.itemQuantity;
+    var price4 = product4object.price;
 
     // Product 5
-    var item5 = 'Shield';
-    var quantity5 = 1;
-    var price5 = 125;
+    var item5 = product5object.productName;
+    var quantity5 = product5object.itemQuantity;
+    var price5 = product5object.price;
 
+    /* Invoice page */
+ 
     // Compute Extened Prices
     var extended_price1 = product1object.itemQuantity * product1object.price;
-    var extended_price2 = quantity2 * price2;
-    var extended_price3 = quantity3 * price3;
-    var extended_price4 = quantity4 * price4;
-    var extended_price5 = quantity5 * price5;
+    var extended_price2 = product2object.itemQuantity * product2object.price;
+    var extended_price3 = product3object.itemQuantity * product3object.price;
+    var extended_price4 = product4object.itemQuantity * product4object.price;
+    var extended_price5 = product5object.itemQuantity * product5object.price;
 
     // Sale Subtotal
     var subtotal = (extended_price1 + extended_price2 + extended_price3 + extended_price4 + extended_price5);
@@ -75,6 +90,7 @@
 
     // Total
     var total = taxes + subtotal;
+
 </script>
 
 <body>
@@ -98,9 +114,9 @@
         <script>
             document.write(`
             <tr>
-                <td>${item2}</td>
-                <td align= "center">${quantity2}</td>
-                <td>\$${price2}</td>
+                <td>${product2object.productName}</td>
+                <td align= "center">${product2object.itemQuantity}</td>
+                <td>\$${product2object.price}</td>
                 <td>\$${extended_price2}</td>
             </tr>
             `);
@@ -108,9 +124,9 @@
         <script>
             document.write(`
             <tr>
-                <td>${item3}</td>
-                <td align= "center">${quantity3}</td>
-                <td>\$${price3}</td>
+                <td>${product3object.productName}</td>
+                <td align= "center">${product3object.itemQuantity}</td>
+                <td>\$${product3object.price}</td>
                 <td>\$${extended_price3}</td>
             </tr>
             `);
@@ -118,9 +134,9 @@
         <script>
             document.write(`
             <tr>
-                <td>${item4}</td>
-                <td align= "center">${quantity4}</td>
-                <td>\$${price4}</td>
+                <td>${product4object.productName}</td>
+                <td align= "center">${product4object.itemQuantity}</td>
+                <td>\$${product4object.price}</td>
                 <td>\$${extended_price4}</td>
             </tr>
             `);
@@ -128,9 +144,9 @@
         <script>
             document.write(`           
             <tr>
-                <td>${item5}</td>
-                <td align= "center">${quantity5}</td>
-                <td>\$${price5}</td>
+                <td>${product5object.productName}</td>
+                <td align= "center">${product5object.itemQuantity}</td>
+                <td>\$${product5object.price}</td>
                 <td>\$${extended_price5}</td>
             </tr>
             `);
