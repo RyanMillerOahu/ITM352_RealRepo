@@ -38,12 +38,12 @@
         <main>
 
             <script>
-                for (i = 1; i <= itemNumber; i++) {
+                for (i = 0; i <= itemNumber; i++) {
                     document.write(`
             <section class="item">
-                    <h2>${eval(products[i].Brand)}</h2>
-                    <p>$${eval(product[i].Price)}</p>
-                    <img src= ${eval(product[i].Image)}>
+                    <h2>${(products[i].Brand)}</h2>
+                    <p>$${(products[i].Price)}</p>
+                    <img src= ${(products[i].Image)}>
             </section>
             `);
                 };
