@@ -1,0 +1,59 @@
+<Script>
+    itemNumber=5;
+  
+    // Product 1
+    Product1 = {Brand: "HTC", Price: 40.00, Image:"http://dport96.github.io/ITM352/morea/080.flow-control-II/HTC.jpg"};
+   
+    // Product 2
+    Product2 = {Brand: "Apple", Price: 75.00, Image:"http://dport96.github.io/ITM352/morea/080.flow-control-II/iphone-3gs.jpg"};
+
+    // Product 3
+    Product3 = {Brand: "Nokia", Price: 35.00, Image:"http://dport96.github.io/ITM352/morea/080.flow-control-II/Nokia.jpg"};
+ 
+    // Product 4
+    Product4 = {Brand: "Samsung", Price: 45.00, Image:"http://dport96.github.io/ITM352/morea/080.flow-control-II/Samsung.jpg"};
+  
+    // Product 5
+    Product5 = {Brand: "Blackberry", Price: 10.00, Image:"http://dport96.github.io/ITM352/morea/080.flow-control-II/Blackberry.jpg"};
+    
+    var products = [Product1,Product2,Product3,Product4,Product5]
+
+</Script>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smartphone Store</title>
+    <link rel="stylesheet" href="products-style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&effect=font-effect-fire-animation">
+</head>
+
+<Body>
+    <header>
+        <h1>Used Smartphone Store</h1>
+    </header>
+    <div>
+        <main>
+
+            <script>
+                for (i = 1; i <= itemNumber; i++) {
+                    document.write(`
+            <section class="item">
+                    <h2>${eval(products[i].Brand)}</h2>
+                    <p>$${eval(product[i].Price)}</p>
+                    <img src= ${eval(product[i].Image)}>
+            </section>
+            `);
+                };
+            </script>
+
+        </main>
+    </div>
+    <footer>
+        <h1>Your One Stop Phone Shop</h1>
+    </footer>
+</Body>
+
+</html>
