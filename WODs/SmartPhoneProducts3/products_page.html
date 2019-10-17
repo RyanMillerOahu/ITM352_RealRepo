@@ -1,6 +1,5 @@
 <Script>
-    itemNumber=5;
-  
+   
     // Product 1
     Product1 = {Brand: "HTC", Price: 40.00, Image:"http://dport96.github.io/ITM352/morea/080.flow-control-II/HTC.jpg"};
    
@@ -38,7 +37,7 @@
         <main>
 
             <script>
-                for (i = 0; i <= itemNumber; i++) {
+                for (i = 0; i <= products.length; i++) {
                     document.write(`
             <section class="item">
                     <h2>${(products[i].Brand)}</h2>
