@@ -1,0 +1,110 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="indexcss.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <title>Bliss Package</title>
+</head>
+
+<body>
+    <header><a href="./index.html"><img id="logo" src=./Images/CAMPP1.jpg> </a> </header> <div id=wrap>
+            <div class=center1>
+                <h1><u>Total Bliss Package</u></h1>
+                <div id="textbox">
+                    <p>
+                        <h2>Package Options</h2>
+                    </p>
+                    <div>
+                        <table style="width:100%"">
+                            <tr>
+                                <th width=" 20%">Basic</th>
+                            <th width="20%">Boujee</th>
+                            <th width="20%">Celestial</th>
+                            </tr>
+                            <tr>
+                                <td> - Standard Waterproof / Windproof Tent, 2 Lanterns, 4 Sleeping Bags, Small Cooler, Emergency Kit </td>
+                                <td> - Nomad Tent, Mosquito Repelant, 4 Foldable Lawn Chairs, 4 Lanterns, Large Cooler, Fire Pit </td>
+                                <td> - Ultimate Nomad Tent, Recliner Chairs, 4 Luxury Sleeping Bags, Mega Cooler, Tent Heater</td>
+                            </tr>
+                            <tr>
+                                <td><img src=./Images/BasicTent.jpg width=215px height=215px></td>
+                                <td><img src=./Images/BoujeeTent.jpg width=215px height=215px></td>
+                                <td><img src=./Images/CelestialTent.jpg width=215px height=215px></td>
+                            </tr>
+            
+                        </table>
+                        <p><i>Each package includes the items of the previous package and / or upgrades redundant items. Damaged items will be credited to your account as a business expense. Take care and enjoy.</i></p>
+                    </div>
+
+                    <p>
+                        <h2>Order Details</h2>
+                    </p>
+                    <p>
+                        Package: </p>
+                    <p>
+                        <form action="/action_page.php">
+                            <input type="radio" name="package" value="Basic" checked> Basic<br>
+                            <input type="radio" name="package" value="Boujee"> Boujee<br>
+                            <input type="radio" name="package" value="Celestial"> Celestial
+                        </form>
+                    </p>
+                    <p>Location:
+
+                        <div class="dropdown">
+                            <button id=locationsbutton onclick="myFunction()"
+                                class="dropbtn">Placeholderrrrrrrrrrrrrr</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                                <a href="#Yellowstone">Yellowstone</a>
+                                <a href="#Yosemite">Yosemite</a>
+                                <a href="#Grand Canyon">Grand Canyon</a>
+                                <a href="#Zion">Zion</a>
+                                <a href="#Glacier">Glacier</a>
+                                <a href="#Acadia">Acadia</a>
+                                <a href="#Rocky Mountain">Rocky Mountain</a>
+                            </div>
+                        </div>
+                    </p>
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        function filterFunction() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                txtValue = a[i].textContent || a[i].innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                    </p>
+                    <p>Date: </p> <p><input type="text" value = "mm/dd/yyyy" > </p>
+                    <p>Credit Card Number: </p> <p><input type="password"> </p>
+                    <p>Security Code: </p><p><input type="password"> </p>
+                    <p>Expiration Date: </p><p><input type="password"> </p>
+                    <p>Phone Number: </p><p><input type="tel"> </p>
+                    
+                    <button type="submit">Place Order</button>
+                </div>
+            </div>
+
+
+            </div>
+</body>
+
+</html>

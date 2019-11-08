@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="indexcss.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <title>No Stress</title>
+</head>
+
+<body>
+    <header><a href="./index.html"><img id="logo" src=./Images/CAMPP1.jpg> </a> </header> <div id=wrap>
+            <div class=center2>
+                <h1><u>No Stress Package</u></h1>
+                <div id="textbox">
+                    <p><h2>Package Details</h2></p>
+                    <p>Register a campground and time and we will meet you ready and able to set up your camping equipment. We unload and setup within an hour. You and your party are not required to stay while we carry out our service. This means you have more time to adventure and get back to your life.</p>
+                    <p><h2>Order Details</h2></p>
+                    <p>Location: 
+
+                    <div class="dropdown">
+                        <button id=locationsbutton onclick="myFunction()" class="dropbtn">Placeholderrrrrrrrrrrrrr</button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                          <a href="#Yellowstone">Yellowstone</a>
+                          <a href="#Yosemite">Yosemite</a>
+                          <a href="#Grand Canyon">Grand Canyon</a>
+                          <a href="#Zion">Zion</a>
+                          <a href="#Glacier">Glacier</a>
+                          <a href="#Acadia">Acadia</a>
+                          <a href="#Rocky Mountain">Rocky Mountain</a>
+                        </div>
+                      </div>
+                      </p>
+                      <script>
+                      /* When the user clicks on the button,
+                      toggle between hiding and showing the dropdown content */
+                      function myFunction() {
+                        document.getElementById("myDropdown").classList.toggle("show");
+                      }
+                      
+                      function filterFunction() {
+                        var input, filter, ul, li, a, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        div = document.getElementById("myDropdown");
+                        a = div.getElementsByTagName("a");
+                        for (i = 0; i < a.length; i++) {
+                          txtValue = a[i].textContent || a[i].innerText;
+                          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            a[i].style.display = "";
+                          } else {
+                            a[i].style.display = "none";
+                          }
+                        }
+                      }
+                      </script>
+                      
+                    <p>Date: </p> <p><input type="text" value = "mm/dd/yyyy" > </p>
+                    <p>Credit Card Number: </p> <p><input type="text"> </p>
+                    <p>Security Code: </p><p><input type="text"> </p>
+                    <p>Expiration Date: </p><p><input type="text"> </p>
+                    <p>Phone Number: </p><p><input type="text"> </p>
+                    <button type="submit">Place Order</button>
+                </div>
+            </div>
+
+
+            </div>
+</body>
+
+</html>
