@@ -1,7 +1,9 @@
 <html lang="en">
 
 <head>
+        <script src="./product_data.js"></script>. 
         <script>
+            document.write(`<h3>${products[0]["model"]} at \$${products[0]["price"]}</h3>`);
                 function checkQuantityTextbox() {
                     errs_array = isNonNegInt(quantity_form.quantity_textbox.value, true);
                     qty_textbox_message.innerHTML = errs_array.join(" ");
@@ -43,6 +45,7 @@
 </head>
 
 <body>
+    
     <form name="quantity_form" action="/process_form" method="POST">
         <label for="quantity_textbox">Quantity Desired:</label>
         <input type="text" name="quantity_textbox" onkeyup="checkQuantityTextbox();">
