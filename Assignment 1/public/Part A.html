@@ -17,7 +17,7 @@
         <img id = headerpic src = ./Images/header.jpg>
     </header>
     <main>
-        <form>
+        <form name = "product_display" method = "POST" action = "/Server1A">
             <table>
               
                 <script>
@@ -29,7 +29,7 @@
                 <td><img src= ./Images/${(products_array[i].image)} width = 200px height =200px></td>
                 <td id = description><h2>${(products_array[i].package)} - $${(products_array[i].price)}</h2>
                 <p>${(products_array[i].description)}</p></td>
-                <td><p>Quantity: <br> <input type = number name = ${(products_array[i].package)}><p></td>
+                <td><p><label for = "quantity_textbox">Quantity:</label> <br> <input type = number name = "${(products_array[i].package)}"><p></td>
                 </div>
                 </tr>
         `);
@@ -39,7 +39,7 @@
 
 </table>
 <div id = "submit">
-<input type = "submit" name = "submit" value = "Submit Order" action = "./InvoicePage.html" >
+<input type = "submit" name = "submit" value = "Submit Order" action = "/Server1A" >
 </div>
             
         </form>
