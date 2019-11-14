@@ -14,3 +14,15 @@ var products_array = [
     { "description": "- Ultimate Nomad Tent<br> - Tempurpedic Pillows <br> - NASA Thermal Blankets<br> - Plasma Torch<br> - Internal Climate Control<br> - Solar Charge Station<br> - Night Vision Goggles", "package": "Celestial", "price": 40, "image": "tentE.png"
     }
 ];
+
+if (typeof module != 'undefined') {
+    module.exports = products_array;
+};
+
+
+
+
+
+
+
+
