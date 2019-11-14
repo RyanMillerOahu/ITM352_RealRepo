@@ -4,11 +4,28 @@
         <script src="./product_data.js">
             document.write(`<h3>${products[0]["model"]} at \$${products[0]["price"]}</h3>`);
             </script>
+
+
+
+
+
+
+
+
     <script>
         function checkQuantityTextbox() {
             errs_array = isNonNegInt(quantity_textbox.value, true)
             qty_textbox_message.innerHTML = errs_array.join(',')
         }
+
+
+
+
+
+
+
+
+
         function isNonNegInt(q, returnErrors = false) {
             errors = []; // assume no errors at first
             if (Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
