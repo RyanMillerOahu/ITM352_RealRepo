@@ -31,7 +31,7 @@
                 <td><img src= ./Images/${(products_array[i].image)} width = 200px height =200px></td> 
                 <td id = description><h2>${(products_array[i].package)} - $${(products_array[i].price)}</h2> 
                 <p>${(products_array[i].description)}</p></td> 
-                <td>Enter a Quantity:<br> <input type = "text" name = "${(products_array[i].package)}" onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'>Dont Leave Blank<span></td>
+                <td>Enter a Quantity:<br> <input type = "text" name = "${(products_array[i].package)}" onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'+"${[i]}">Dont Leave Blank<span></td>
                 </div>
                 </tr>
         `);
@@ -71,14 +71,16 @@ for (i = 0; i < products_array.length; i++) {
 
 console.log(names_array);
 
+
+/*
 //Use loop to input and check errors for each specific textbox so client side knows what theyre doing wrong. They can still submit bad data and the server will also tell them what to fix.
 function checkQuantityTextbox() {
     for (i = 0; i < products_array.length; i++) {
             errs_array = isNonNegInt(names_array[i].value, true);
-            qty_textbox_message.innerHTML = errs_array.join(',');
+            qty_textbox_message[i].innerHTML = errs_array.join(',');
         }
 };
-
+*/
 /*
 let params = (new URL(document.location)).searchParams;
         GET = {};
