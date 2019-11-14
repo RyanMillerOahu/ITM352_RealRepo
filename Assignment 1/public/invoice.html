@@ -3,38 +3,77 @@
 
 <head>
     <style>
+        body {
+            background-image: url("./Images/Background.jpg");
+            color: white;
+        }
+
         table,
         td {
-            border: 2px solid black;
-            background-color: white;
+            border: 2px solid red;
+            background-color: black;
+            font-size: 30px;
+
         }
 
         table {
             align-content: center;
+            background-image: gray;
+
+        }
+
+        #title {
+            color: white;
         }
 
         table,
         tr {
-            background-color: brown;
+            background-color: black;
+
+        }
+
+        #shippinglabel,
+        p {
+            text-align: center;
+            color: white;
         }
     </style>
     <script src="./Product_info.js">
 
     </script>
+
 </head>
 
 <script>
     //Product Data
+    //Get the query string values from form and turns them into an obect. (Borrowed from Port)
 
-    // Compute Extened Prices
-    var extended_price1 = quantities[product_name] * products_array[0].price;
-    var extended_price2 = quantities[product_name] * products_array[1].price;
-    var extended_price3 = quantities[product_name] * products_array[2].price;
-    var extended_price4 = quantities[product_name] * products_array[3].price;
-    var extended_price5 = quantities[product_name] * products_array[4].price;
+    let params = (new URL(document.location)).searchParams;
+    quantities = {};
+    params.forEach(function (value, key) { quantities[key] = value });
 
-    // Sale Subtotal
-    var subtotal = (extended_price1 + extended_price2 + extended_price3 + extended_price4 + extended_price5);
+
+    //Takes value key pairs from object created above, extracts the number quantity and makes an array of values.
+
+    var quantity_values = Object.keys(quantities).map(function (key) {
+        return [quantities[key]];
+    });
+
+    //To check if it works so far
+    console.log(quantity_values);
+
+    // Compute Extened Prices by multiplying the values in quantity value array with prices in JSON file.
+    var extended_price = [];
+
+    for (i = 0; i < products_array.length; i++) {
+        extended_price[i] = quantity_values[i] * products_array[i].price;
+    }
+
+    // Sale Subtotal sums values in extended price array 
+    var subtotal = 0;
+    for (var i = 0; i < extended_price.length; i++) {
+        subtotal += extended_price[i]
+    };
 
     // Taxes
     var taxes = (subtotal * 0.0575);
@@ -56,64 +95,35 @@
 </script>
 
 <body>
+    <br>
+    <br>
+    <br>
+    <br>
     <div>
-        <table>
+        <table align="center">
             <tr>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Extended Price</th>
+                <th id="title" align="center" colspan="4">CAMPP Invoice Page</th>
+            </tr>
+            <tr>
+                <th id="title">Item</th>
+                <th id="title">Quantity</th>
+                <th id="title">Price</th>
+                <th id="title">Extended Price</th>
             </tr>
             <script>
-                document.write(`
+                //Loop prints out a table template for each item and displays the needed information.(Modified from invoice 2)
+                for (i = 0; i < products_array.length; i++) {
+                    document.write(`
             <tr>
-                <td>${item1}</td>
-                <td align= "center">${quantity1}</td>
-                <td>\$${price1}</td>
-                <td>\$${extended_price1}</td>
+                <td>${products_array[i].package}</td>
+                <td align= "center">${quantity_values[i]}</td>
+                <td>\$${products_array[i].price}</td>
+                <td>\$${extended_price[i]}</td>
             </tr>
             `);
+                }
             </script>
-            <script>
-                document.write(`
-            <tr>
-                <td>${item2}</td>
-                <td align= "center">${quantity2}</td>
-                <td>\$${price2}</td>
-                <td>\$${extended_price2}</td>
-            </tr>
-            `);
-            </script>
-            <script>
-                document.write(`
-            <tr>
-                <td>${item3}</td>
-                <td align= "center">${quantity3}</td>
-                <td>\$${price3}</td>
-                <td>\$${extended_price3}</td>
-            </tr>
-            `);
-            </script>
-            <script>
-                document.write(`
-            <tr>
-                <td>${item4}</td>
-                <td align= "center">${quantity4}</td>
-                <td>\$${price4}</td>
-                <td>\$${extended_price4}</td>
-            </tr>
-            `);
-            </script>
-            <script>
-                document.write(`           
-            <tr>
-                <td>${item5}</td>
-                <td align= "center">${quantity5}</td>
-                <td>\$${price5}</td>
-                <td>\$${extended_price5}</td>
-            </tr>
-            `);
-            </script>
+
             <tr>
                 <td colspan=4 height=>&nbsp;</td>
             </tr>
@@ -140,9 +150,14 @@
                 <td><strong>$
                         <script>document.write(total.toFixed(2))</script></strong></td>
             </tr>
+            <tr>
+
+            </tr>
         </table>
     </div>
-    <p><strong>OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $2 shipping</strong></p>
-    <p><strong>A subtotal $50 - $99.99 will be $5 shipping</strong></p>
-    <p><strong>Subtotals over $100 will be charged 5% of the subtotal amount</strong></p>
+    <div id="shippinglabel">
+        <p><strong>OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $2 shipping</strong></p>
+        <p><strong>A subtotal $50 - $99.99 will be $5 shipping</strong></p>
+        <p><strong>Subtotals over $100 will be charged 5% of the subtotal amount</strong></p>
+    </div>
 </body>

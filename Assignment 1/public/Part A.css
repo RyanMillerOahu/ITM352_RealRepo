@@ -13,7 +13,7 @@ main {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    background: url(./Images/phone_globe.jpg);
+  
     background-repeat: no-repeat;
     background-position: center;
 }

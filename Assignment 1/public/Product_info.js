@@ -1,5 +1,5 @@
 var products_array = [
-    { "description": "Register a campground and time and we will meet you ready and able to set up your camping equipment. We unload and setup within an hour. You and your party are not required to stay while we carry out our service. This means you have more time to adventure and get back to your life.", "package": "Setup", "price": 20, "image": "tentA.png"
+    { "description": "- Tent<br> - Sleeping Bag<br> - Blanket<br> - Shovel<br> - Pillow<br> - Bandaids<br> - Chair", "package": "Bare Bones", "price": 20, "image": "tentA.png"
     }
         ,
     { "description": "- Standard Waterproof / Windproof Tent<br> - 2 Lanterns<br> - 4 Sleeping Bags<br> - 4 Small Pillows <br> - Small Cooler<br> - Emergency Kit<br> - Binoculars ", "package": "Basic", "price": 25, "image": "tentB.png"

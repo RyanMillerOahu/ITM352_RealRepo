@@ -3,6 +3,7 @@ var myParser = require("body-parser");
 var products_array = require("./public/Product_info");
 console.log(typeof products_array);
 var app = express();
+var querystring = require("querystring");
 
 //Turns complicated HTML page into easy to read data
 
@@ -15,15 +16,20 @@ app.post("/purchase", function (request, response) {
    if (typeof POST['submit'] != 'undefined') {
        //check and validate here
        isvaliddata = true;
+       selections = false;
        for (i = 0; i < products_array.length; i++){
         product_name = products_array[i].package; 
          isvaliddata = isvaliddata && (isNonNegInt( POST[product_name] ));
+         selections = selections || (POST[product_name] > 0);
         }
-        
-        if(isvaliddata) { 
-    DisplayPurchase(POST, response);
+        //take object turns into querystring then takes you to the invoice page if the data is valid. Uses flag to see if quantities are greater than zero
+        if(isvaliddata && selections) { 
+            var qstring = querystring.stringify(POST); 
+
+        response.redirect("invoice.html?"+qstring);
         } else {
-           response.send("Data is invalid, ensure that every quantity box is filled with a positive interger. <br> Press back button and input proper data.");
+            response.redirect("errors.html");
+            //response.send("You've got errors");
         }
 } 
 });
@@ -41,15 +47,3 @@ function isNonNegInt(q, return_errors = false) {
     return return_errors ? errors : (errors.length == 0);
 }
 
-function DisplayPurchase(quantities, response) {
-    inv_str = '';
-    
-    for (i = 0; i < products_array.length; i++){
-    quantities_array = [];
-    product_name = products_array[i].package; 
-    product_price = products_array[i].price; 
-        inv_str += `You want ${quantities[product_name]} ${product_name} packages at price of $${products_array[i].price} each. This equates to $${quantities[product_name]*product_price}<br>`;
-         quantities_array.push(quantities[product_name])
-    }
-    response.send(inv_str);
-}
