@@ -45,10 +45,11 @@ function DisplayPurchase(quantities, response) {
     inv_str = '';
     
     for (i = 0; i < products_array.length; i++){
+    quantities_array = [];
     product_name = products_array[i].package; 
     product_price = products_array[i].price; 
         inv_str += `You want ${quantities[product_name]} ${product_name} packages at price of $${products_array[i].price} each. This equates to $${quantities[product_name]*product_price}<br>`;
-
+         
     }
     response.send(inv_str);
 }
