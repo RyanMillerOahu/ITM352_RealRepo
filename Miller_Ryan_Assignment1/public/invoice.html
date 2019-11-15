@@ -52,7 +52,6 @@
     quantities = {};
     params.forEach(function (value, key) { quantities[key] = value });
 
-
     //Takes value key pairs from object created above, extracts the number quantity and makes an array of values.
 
     var quantity_values = Object.keys(quantities).map(function (key) {
@@ -62,9 +61,8 @@
     //To check if it works so far
     console.log(quantity_values);
 
-    // Compute Extened Prices by multiplying the values in quantity value array with prices in JSON file.
+    // Compute Extened Prices by using loop to multiplying the values in quantity value array with prices in JSON file.
     var extended_price = [];
-
     for (i = 0; i < products_array.length; i++) {
         extended_price[i] = quantity_values[i] * products_array[i].price;
     }

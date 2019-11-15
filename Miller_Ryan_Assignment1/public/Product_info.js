@@ -1,3 +1,5 @@
+//creates JSON object that can be used to drop related data throughout other files and server.
+
 var products_array = [
     { "description": "- Tent<br> - Sleeping Bag<br> - Blanket<br> - Shovel<br> - Pillow<br> - Bandaids<br> - Chair", "package": "Bones", "price": 20, "image": "tentA.png"
     }

@@ -1,20 +1,23 @@
 var express = require('express');
 var myParser = require("body-parser");
+//Get info from JSON file and check if it worked
 var products_array = require("./public/Product_info");
 console.log(typeof products_array);
+//Allows us to use the tools and kits within express
 var app = express();
+//Needed for query string use in other functions
 var querystring = require("querystring");
 
-//Turns complicated HTML page into easy to read data
+//Turns complicated HTML page into easy to read data, links server so that it can recieve requests from index page
 
 app.use(myParser.urlencoded({ extended: true }));
 app.post("/purchase", function (request, response) {
    let POST = request.body;
    console.log(POST)
 
-//asking to see if submit button was pressed
+//Asking to see if submit button was pressed
    if (typeof POST['submit'] != 'undefined') {
-       //check and validate here
+       //Check and validate data here
        isvaliddata = true;
        selections = false;
        for (i = 0; i < products_array.length; i++){
