@@ -25,22 +25,25 @@ app.post("/purchase", function (request, response) {
          isvaliddata = isvaliddata && (isNonNegInt( POST[product_name] ));
          selections = selections || (POST[product_name] > 0);
         }
-        //take object turns into querystring then takes you to the invoice page if the data is valid. Uses flag to see if quantities are greater than zero
+
+        //Take object and turns it into querystring then takes you to the invoice page if the data is valid using the isnonNegInt function. Also uses flag validator above to ensure that quantities are greater than zero. If data is not valid server redirects you to errors page.
+
         if(isvaliddata && selections) { 
             var qstring = querystring.stringify(POST); 
 
         response.redirect("invoice.html?"+qstring);
         } else {
             response.redirect("errors.html");
-            //response.send("You've got errors");
         }
 } 
 });
 
-//Sets up HTML page, takes a get request and looks for that path in the public directory
+//Sets up HTML page, takes a get request and looks for that path in the public directory basically allowing you to use whats in the public directory and sets the server to listen for requests on 8080.
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
+
+//Main data validator function (Borrowered from in class lab with Port)
 
 function isNonNegInt(q, return_errors = false) {
     errors = []; // assume no errors at first
