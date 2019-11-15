@@ -12,30 +12,30 @@ var querystring = require("querystring");
 
 app.use(myParser.urlencoded({ extended: true }));
 app.post("/purchase", function (request, response) {
-   let POST = request.body;
-   console.log(POST)
+    let POST = request.body;
+    console.log(POST)
 
-//Asking to see if submit button was pressed
-   if (typeof POST['submit'] != 'undefined') {
-       //Check and validate data here
-       isvaliddata = true;
-       selections = false;
-       for (i = 0; i < products_array.length; i++){
-        product_name = products_array[i].package; 
-         isvaliddata = isvaliddata && (isNonNegInt( POST[product_name] ));
-         selections = selections || (POST[product_name] > 0);
+    //Asking to see if submit button was pressed
+    if (typeof POST['submit'] != 'undefined') {
+        //Check and validate data here
+        isvaliddata = true;
+        selections = false;
+        for (i = 0; i < products_array.length; i++) {
+            product_name = products_array[i].package;
+            isvaliddata = isvaliddata && (isNonNegInt(POST[product_name]));
+            selections = selections || (POST[product_name] > 0);
         }
 
         //Take object and turns it into querystring then takes you to the invoice page if the data is valid using the isnonNegInt function. Also uses flag validator above to ensure that quantities are greater than zero. If data is not valid server redirects you to errors page.
 
-        if(isvaliddata && selections) { 
-            var qstring = querystring.stringify(POST); 
+        if (isvaliddata && selections) {
+            var qstring = querystring.stringify(POST);
 
-        response.redirect("invoice.html?"+qstring);
+            response.redirect("invoice.html?" + qstring);
         } else {
             response.redirect("errors.html");
         }
-} 
+    }
 });
 
 //Sets up HTML page, takes a get request and looks for that path in the public directory basically allowing you to use whats in the public directory and sets the server to listen for requests on 8080.
