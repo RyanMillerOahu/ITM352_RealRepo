@@ -1,15 +1,177 @@
-quantities_array = [];
+index.html
 
-function DisplayPurchase(quantities, response) {
-    inv_str = '';
-    
-    for (i = 0; i < products_array.length; i++){
-    
-    product_name = products_array[i].package; 
-    product_price = products_array[i].price; 
-        inv_str += `You want ${quantities[product_name]} ${product_name} packages at price of $${products_array[i].price} each. This equates to $${quantities[product_name]*product_price}<br>`;
-         quantities_array.push(quantities[product_name]);
-    }
-    response.send(inv_str);
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Part A.css">
+    <title>Assignment 1</title>
+
+    <script src = "./Product_info.js">
+        
+    </script>
+</head>
+
+<body>
+    <center>
+    <header>
+        <img id = headerpic src = ./Images/header.jpg>
+    </header>
+    <main>
+       
+        <form name = "product_display" method = "POST" action = "./purchase">
+            <table>
+              
+                <script>
+                    //Loop to display products, discription and quantity text box
+                    for (i = 0; i < products_array.length; i++) {
+                        document.write(`
+                <tr>
+                <div id = productbox> 
+                <td><img src= ./Images/${(products_array[i].image)} width = 200px height =200px></td> 
+                <td id = description><h2>${(products_array[i].package)} - $${(products_array[i].price)}</h2> 
+                <p>${(products_array[i].description)}</p></td> 
+                <td>Enter a Quantity:<br> <input type = "text" name = "${(products_array[i].package)}" onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'+"${[i]}">Dont Leave Blank<span></td>
+                </div>
+                </tr>
+        `);
+                    };
+                </script>
+
+</table>
+<div id = "submit">
+<input type = "submit" name = "submit" value = "Submit Order">
+</div>
+            
+        </form>
+    </main> 
+</center>
+</body>
+
+</html>
+
+
+<Script>
+
+    function isNonNegInt(q, return_errors = false) {
+    errors = []; // assume no errors at first
+    if (Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+    if (q < 0) errors.push('Negative value!'); // Check if it is non-negative
+    if (parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+    return return_errors ? errors : (errors.length == 0);
 }
-console.log(quantities_array);
+
+//Need to figure out way to get proper name of text box into function instead quantity_textbox
+// Create an array of the names of each textbox
+names_array = [];
+
+for (i = 0; i < products_array.length; i++) {
+    names_array.push(products_array[i].package);
+}
+
+console.log(names_array);
+
+
+/*
+//Use loop to input and check errors for each specific textbox so client side knows what theyre doing wrong. They can still submit bad data and the server will also tell them what to fix.
+function checkQuantityTextbox() {
+    for (i = 0; i < products_array.length; i++) {
+            errs_array = isNonNegInt(names_array[i].value, true);
+            qty_textbox_message[i].innerHTML = errs_array.join(',');
+        }
+};
+*/
+/*
+let params = (new URL(document.location)).searchParams;
+        GET = {};
+        params.forEach(function (value, key) { GET[key] = value });
+        if (typeof GET['quantity_textbox'] != 'undefined') {
+            displayPurchase();
+            window.stop();
+        }
+        */
+</Script>
+
+
+
+
+server.js
+
+
+
+
+var express = require('express');
+var myParser = require("body-parser");
+var products_array = require("./public/Product_info");
+console.log(typeof products_array);
+var app = express();
+var querystring = require("querystring");
+
+//Turns complicated HTML page into easy to read data
+
+app.use(myParser.urlencoded({ extended: true }));
+app.post("/purchase", function (request, response) {
+   let POST = request.body;
+   console.log(POST)
+
+//asking to see if submit button was pressed
+   if (typeof POST['submit'] != 'undefined') {
+       //check and validate here
+       isvaliddata = true;
+       selections = false;
+       for (i = 0; i < products_array.length; i++){
+        product_name = products_array[i].package; 
+         isvaliddata = isvaliddata && (isNonNegInt( POST[product_name] ));
+         selections = selections || (POST[product_name] > 0);
+        }
+        //take object turns into querystring then takes you to the invoice page if the data is valid. Uses flag to see if quantities are greater than zero
+        if(isvaliddata && selections) { 
+            var qstring = querystring.stringify(POST); 
+
+        response.redirect("invoice.html?"+qstring);
+        } else {
+            response.redirect("errors.html");
+            //response.send("You've got errors");
+        }
+} 
+});
+
+//Sets up HTML page, takes a get request and looks for that path in the public directory
+
+app.use(express.static('./public'));
+app.listen(8080, () => console.log(`listening on port 8080`));
+
+function isNonNegInt(q, return_errors = false) {
+    errors = []; // assume no errors at first
+    if (Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+    if (q < 0) errors.push('Negative value!'); // Check if it is non-negative
+    if (parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+    return return_errors ? errors : (errors.length == 0);
+}
+
+
+JSON
+
+var products_array = [
+    { "description": "- Tent<br> - Sleeping Bag<br> - Blanket<br> - Shovel<br> - Pillow<br> - Bandaids<br> - Chair", "package": "Bones", "price": 20, "image": "tentA.png"
+    }
+        ,
+    { "description": "- Standard Waterproof / Windproof Tent<br> - 2 Lanterns<br> - 4 Sleeping Bags<br> - 4 Small Pillows <br> - Small Cooler<br> - Emergency Kit<br> - Binoculars ", "package": "Basic", "price": 25, "image": "tentB.png"
+    }
+        ,
+    { "description": "- Nomad Tent<br> - Standard Pillows <br> - Mosquito Repelant<br> - 4 Foldable Lawn Chairs<br> - 4 Lanterns<br> - Large Cooler<br> - Fire Pit", "package": "Boujee", "price": 30, "image": "tentC.png"
+    }
+        ,
+    { "description": "- All Terrain Nomad Tent<br> - Down Pillows<br> - Recliner Chairs<br> - 4 Luxury Sleeping Bags<br> - Mega Cooler<br> - Tent Heater<br> - Eagle Vision Pros", "package": "Badass", "price": 35, "image": "tentD.png"
+    }
+        ,
+    { "description": "- Ultimate Nomad Tent<br> - Tempurpedic Pillows <br> - NASA Thermal Blankets<br> - Plasma Torch<br> - Internal Climate Control<br> - Solar Charge Station<br> - Night Vision Goggles", "package": "Celestial", "price": 40, "image": "tentE.png"
+    }
+];
+
+if (typeof module != 'undefined') {
+    module.exports = products_array;
+};
+
