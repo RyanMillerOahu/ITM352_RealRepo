@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success</title>
+</head>
+<body>
+    <form id="reg_success" method="POST" name="Registration_Form">
+    <h1>You Registered Successfully!</h1>
+    <p>Click here to get your invoice</p>
+    <input type="submit" name="submit" value="Invoice">
+    </form>
+</body>
+</html>
+
+<script>
+        //Sets link with quantity data to pass to next page
+    reg_success.action="/success" + document.location.search;
+    </script>

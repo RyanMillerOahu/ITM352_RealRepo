@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Page</title>
+</head>
+
+<body>
+    <form id="reg_form" method="POST" name="Registration_Form">
+        <table>
+            <tr>
+                <th colspan="2">Registration Form</th>
+            </tr>
+            <tr>
+                <td><label for="First Name">First Name:</label></td>
+                <td><input type="text" name="FirstName" value="" id="First Name"></td>
+            </tr>
+            <tr>
+                <td><label for="Last Name">Last Name:</label></td>
+                <td><input type="text" name="LastName" value="" id="Last Name"></td>
+            </tr>
+            <tr>
+                    <td><label for="Username">Username:</label></td>
+                    <td><input type="text" name="Username" value="" id="Username"></td>
+                </tr>
+            <tr>
+                <td><label for="Password">Password</label></td>
+                <td><input type="text" name="Pass" value="" id="Password"></td>
+            </tr>
+            <tr>
+                <td><label for="ConfirmPass">Confirm Password:</label></td>
+                <td><input type="text" name="ConfirmPass" value="" id="ConfirmPass"></td>
+            </tr>
+            <tr>
+                <td><label for="Email">Email:</label></td>
+                <td><input type="text" name="Email" value="" id="Email"></td>
+            </tr>
+            <tr>
+                <td colspan="2" id="submit_reg"><input type="submit" name="submit" value="Register"></td>
+            </tr>
+
+        </table>
+    </form>
+</body>
+
+</html>
+
+<script>
+        //Sets link with quantity data to pass to next page
+    reg_form.action="/register" + document.location.search;
+    </script>

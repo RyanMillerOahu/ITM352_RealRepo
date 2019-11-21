@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+
+    <script src = "./Product_info.js"></script>
+
+</head>
+<body>
+    <h1>CAMPP Login Page!</h1>
+    <p>To use our highly esteemed services you much <br> login or register as an offical Campp Member</p>
+    <form action="./LoginForm" method="POST" name="Login_Form">
+
+        <input type="text" name="username" size="40" placeholder="Enter Username" ><br/>
+        <input type="password" name="password" size="40" placeholder="Enter Password"><br/>
+        <input type="submit" value="Login" id="submit">
+
+        </form>
+        
+        
+        
+        <a id="reg_link"><button type="button">Register</button></a>
+</body>
+</html>
+
+<script>
+    //Sets link with quantity data to pass to next page
+reg_link.href="registration.html" + document.location.search;
+</script>
