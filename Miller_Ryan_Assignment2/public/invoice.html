@@ -39,8 +39,18 @@
         }
     </style>
     <script src="./Product_info.js">
-
+    
     </script>
+    <script>
+        //Place for security and name customization
+            let params = (new URL(document.location)).searchParams;
+           if (params.has("InvoiceName")) {
+             NAME = params.get("InvoiceName"); 
+            } else {
+                alert("You're Not Logged In!");
+                window.location = "Login.html?" + window.location.search; 
+            }
+            </script>
 
 </head>
 
@@ -48,7 +58,7 @@
     //Product Data
     //Get the query string values from form and turns them into an obect. (Borrowed from Port)
 
-    let params = (new URL(document.location)).searchParams;
+    //let params = (new URL(document.location)).searchParams;
     quantities = {};
     params.forEach(function (value, key) { quantities[key] = value });
 
@@ -59,7 +69,7 @@
     });
 
     //To check if it works so far
-    console.log(quantity_values);
+    console.log(quantity_values, "INVOICE PAGE");
 
     // Compute Extened Prices by using loop to multiplying the values in quantity value array with prices in JSON file.
     var extended_price = [];
@@ -100,7 +110,7 @@
     <div>
         <table align="center">
             <tr>
-                <th id="title" align="center" colspan="4">CAMPP Invoice Page</th>
+                <th id="title" align="center" colspan="4"><script>document.write(`${NAME}'s`);</script> Invoice Page</th>
             </tr>
             <tr>
                 <th id="title">Item</th>

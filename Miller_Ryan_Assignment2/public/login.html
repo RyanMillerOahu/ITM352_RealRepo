@@ -6,12 +6,17 @@
     <title>Login Page</title>
 
     <script src = "./Product_info.js"></script>
-
+    <script>
+    let params = (new URL(document.location)).searchParams;
+    if (params.has("LoginError")) {
+alert(params.get("LoginError"));
+    }
+    </script>
 </head>
 <body>
     <h1>CAMPP Login Page!</h1>
     <p>To use our highly esteemed services you much <br> login or register as an offical Campp Member</p>
-    <form action="./LoginForm" method="POST" name="Login_Form">
+    <form method="POST" name="Login_Form">
 
         <input type="text" name="username" size="40" placeholder="Enter Username" ><br/>
         <input type="password" name="password" size="40" placeholder="Enter Password"><br/>
@@ -28,4 +33,6 @@
 <script>
     //Sets link with quantity data to pass to next page
 reg_link.href="registration.html" + document.location.search;
+
+Login_Form.action="./LoginForm" + document.location.search; 
 </script>
