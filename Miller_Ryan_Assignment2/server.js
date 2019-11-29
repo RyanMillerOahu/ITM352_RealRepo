@@ -75,7 +75,7 @@ app.post("/purchase", function (request, response) {
                 //   return [IndexErrors_Object[key = value]];
                 //});
 
-                //To check if it works so far
+                //To check if it works so far, CORRECTLY CREATES STRING BUT HOW DO I GET IT OUT OF INDEX
                 console.log(IndexErrorsString, "String Created");
 
 
