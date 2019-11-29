@@ -60,44 +60,12 @@ app.post("/purchase", function (request, response) {
                 //Turn object of errors into a string to be put in URL 
                 IndexErrorsString = querystring.stringify(IndexErrors_Object);
 
-
-/*
-                var idx = [i];
-                //Get package name
-                var Package_Name = Object.keys(IndexErrors_Object)[idx];
-                //Get error message for specific package
-                var Message = IndexErrors_Object[Package_Name];
-                //Create string variable linking package to its error message
-                NewErrorPair = Package_Name + "=" + Message;
-                //Diagnostic
-                console.log(typeof NewErrorPair);
-                //Add string to query
-                ErrorStringAttempt = querystring.stringify(NewErrorPair);
-                request.query.Package_Name = ErrorStringAttempt;
-                console.log(ErrorStringAttempt, "HERE");
-                */
-
                 //Turn object of errors into a string to be put in URL 
                 IndexErrorsString = querystring.stringify(IndexErrors_Object);
                 //Set string to value within URL
                 request.query.IndexErrors = IndexErrorsString;
 
                 console.log(IndexErrors_Object, "Object Created");
-                //
-
-
-                //To check if it works so far, CORRECTLY CREATES STRING BUT HOW DO I GET IT OUT OF INDEX
-                console.log(IndexErrorsString, "String Created");
-
-                //Takes value key pairs from object created above, extracts the number quantity and makes an array of values.
-                //Object.keys(IndexErrors_Object).forEach(function (value, key) { IndexErrors_Object[key] = value });
-
-                //ErrorMessages = Object.keys(IndexErrors_Object).map(function (value) {
-                //   return [IndexErrors_Object[key = value]];
-                //});
-
-                //Set each key name values to its own loop generated variable 
-                //(IndexErrors_Object["IndexError" + [i]], "LORD"); How to access
             }
             isvaliddata = isvaliddata && (isNonNegInt(POST[product_name]));
             selections = selections || (POST[product_name] > 0);

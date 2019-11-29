@@ -13,8 +13,12 @@
         let params = (new URL(document.location)).searchParams;
         if (params.has("ErrorMessagesX")) {
                 ErrorMessagesX = params.get("ErrorMessagesX")
-                cosole.log(ErrorMessagesX, "From Index")
+                console.log(ErrorMessagesX, "From Index")
+                var res = ErrorMessagesX.split("&");
+                console.log(res, "RESULT");
             }
+
+
 /*
             //Take errors from query string and set them to custom variables
         for (i = 0; i < products_array.length; i++) {
@@ -56,7 +60,7 @@
                             <td align = "center">Enter a Quantity:<br> <input type="text" name="${(products_array[i].package)}"
                                     onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'
                                     +"${[i]}">Dont Leave Blank<span></td>
-                            <td id="ErrorBox" align = "center">${(ErrorMessagesX[i])}</td>
+                            <td id="ErrorBox" align = "center"></td>
                         </div>
                 </tr>
                 `);
