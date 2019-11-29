@@ -104,7 +104,7 @@ app.post("/purchase", function (request, response) {
             qstring = querystring.stringify(request.query);
 
             //Input errors into new registration URL query so they can be used to display errors
-            response.redirect("/Index.html?" + qstring);
+            response.redirect("Index.html?" + qstring);
         }
     }
 });
