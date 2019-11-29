@@ -50,6 +50,9 @@
                 alert("You're Not Logged In!");
                 window.location = "Login.html?" + window.location.search; 
             }
+            if (params.has("SuccessfulReg")) {
+            alert(params.get("SuccessfulReg"));
+        }
             </script>
 
 </head>

@@ -26,7 +26,6 @@ footer , header {
 body {
     width: fit-content;
     align-content: center;
-    padding-left: 350px ;
     background-image: url("./Images/Background.jpg");
     background-size: auto;
 }
@@ -53,9 +52,9 @@ td {
 
 #headerpic {
     border-radius: 0px;
-    width: 718px;
-    padding: 2px;
-
+    height: auto;
+    padding: 0;
+    width: 100%;
 }
 
 #submit{
@@ -72,3 +71,19 @@ td {
         align-self: center;
         font-size: 2em;
     }
+
+    .content {
+        max-width: 900px;
+        margin: auto;
+    }
+
+#IndexErrorBox {
+    color: red;
+}
+
+.headings {
+    padding: 5px;
+    background-color: red;
+    font-size: 3em;
+}
+

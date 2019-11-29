@@ -1,38 +1,76 @@
 <html lang="en">
+
 <head>
+    <style>
+        input[type=submit] {
+            padding: 10px;
+            border: none;
+            background: none;
+            color: Red;
+            background-color: black;
+            width: 500px;
+            align-self: center;
+            font-size: 2em;
+        }
+
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Part B.css">
     <title>Login Page</title>
 
-    <script src = "./Product_info.js"></script>
+    <script src="./Product_info.js"></script>
     <script>
-    let params = (new URL(document.location)).searchParams;
-    if (params.has("LoginError")) {
-alert(params.get("LoginError"));
-    }
+        let params = (new URL(document.location)).searchParams;
+        if (params.has("LoginError")) {
+            alert(params.get("LoginError"));
+        }
+        if (params.has("StickyLoginUser")) {
+            StickyLoginUser = params.get("StickyLoginUser")
+        }
     </script>
 </head>
-<body>
-    <h1>CAMPP Login Page!</h1>
-    <p>To use our highly esteemed services you much <br> login or register as an offical Campp Member</p>
-    <form method="POST" name="Login_Form">
 
-        <input type="text" name="username" size="40" placeholder="Enter Username" ><br/>
-        <input type="password" name="password" size="40" placeholder="Enter Password"><br/>
-        <input type="submit" value="Login" id="submit">
+<body class="content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-        </form>
-        
-        
-        
-        <a id="reg_link"><button type="button">Register</button></a>
+    <Table>
+        <tr>
+            <th colspan="3">
+                <p id="title">Login Page</p>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <form method="POST" name="Login_Form">
+                    <input type="text" name="username" size="70" id="Userbox" placeholder="Enter Username">
+                    <input type="password" name="password" size="70" placeholder="Enter Password">
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Login" id="submit"></form></td>
+        </tr>
+        <tr>
+            <td><a id="reg_link"><button type="button">Register Here</button></a></td>
+        </tr>
+
+    </Table>
 </body>
+
 </html>
 
 <script>
-    //Sets link with quantity data to pass to next page
-reg_link.href="registration.html" + document.location.search;
+    //Sends link with quantity data to pass to next page
+    reg_link.href = "registration.html" + document.location.search;
 
-Login_Form.action="./LoginForm" + document.location.search; 
+    Login_Form.action = "./LoginForm" + document.location.search;
+    //Inputs sticky User so they know what they just put, passwords are never sticky so just for user.
+    document.getElementById("Userbox").value = StickyLoginUser;
 </script>

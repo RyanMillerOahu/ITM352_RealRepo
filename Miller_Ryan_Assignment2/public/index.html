@@ -7,45 +7,77 @@
     <link rel="stylesheet" href="Part A.css">
     <title>Assignment 1</title>
 
-    <script src = "./Product_info.js">
-        
+    <script src="./Product_info.js">
+    </script>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+       
+       //TEST
+        if (params.has("IndexErrors")) {
+                IndexErrors = params.get("IndexErrors");
+            }
+            
+       document.getElementById("IndexErrorBox").innerHTML = IndexErrors;
+       
+            //Take errors from query string and set them to custom variables
+        for (i = 0; i < products_array.length; i++) {
+            if (params.has("IndexErrors" + [i])) {
+                IndexError[i] = params.get("IndexErrors" + [i])
+            }
+        }
+        //Set inner HTML of error boxes to errors assigned to custom variables
+        for (i = 0; i < products_array.length; i++) {
+            document.getElementById("IndexErrorBox" + [i]).innerHTML = IndexError[i];
+        }
+
     </script>
 </head>
 
-<body>
-    <center>
-    <header>
-        <img id = headerpic src = ./Images/header.jpg>
-    </header>
+<body class="content">
+
     <main>
-       
-        <form name = "product_display" method = "POST" action = "./purchase">
+
+        <form name="product_display" method="POST" action="./purchase">
             <table>
-              
+                <tr><img id=headerpic src=./Images/header.jpg> </tr> <tr>
+                    <td colspan=2 class="headings">Package:</td>
+                    <td class="headings">Quantity:</td>
+                    <td class="headings">Errors:</td>
+                </tr>
+
+
                 <script>
                     //Loop to display products, description and quantity text box, prints out each product.
                     for (i = 0; i < products_array.length; i++) {
-                        document.write(`
-                <tr>
-                <div id = productbox> 
-                <td><img src= ./Images/${(products_array[i].image)} width = 200px height =200px></td> 
-                <td id = description><h2>${(products_array[i].package)} - $${(products_array[i].price)}</h2> 
-                <p>${(products_array[i].description)}</p></td> 
-                <td>Enter a Quantity:<br> <input type = "text" name = "${(products_array[i].package)}" onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'+"${[i]}">Dont Leave Blank<span></td>
-                </div>
+                        document.write(` <tr>
+                        <div id=productbox>
+                            <td><img src=./Images/${(products_array[i].image)} width=200px height=200px></td>
+                            <td id=description>
+                                <h2>${(products_array[i].package)} - $${(products_array[i].price)}</h2>
+                                <p>${(products_array[i].description)}</p>
+                            </td>
+                            <td align = "center">Enter a Quantity:<br> <input type="text" name="${(products_array[i].package)}"
+                                    onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'
+                                    +"${[i]}">Dont Leave Blank<span></td>
+                            <td id="IndexErrorBox${[i]}" align = "center"></td>
+                        </div>
                 </tr>
-        `);
+                `);
                     };
                 </script>
+                <tr>
+                    <td colspan="3" id = "IndexErrorBox"></td>
+                </tr>
 
-</table>
-<div id = "submit">
-<input type = "submit" name = "submit" value = "Submit Order">
-</div>
-            
+            </table>
+            <div id="submit">
+                <input type="submit" name="submit" value="Submit Order">
+            </div>
+
         </form>
-    </main> 
-</center>
-</body>
-</html>
 
+    </main>
+
+</body>
+
+</html>

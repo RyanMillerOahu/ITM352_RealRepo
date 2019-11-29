@@ -1,0 +1,45 @@
+#title {
+    font-size: 5em;
+}
+
+body {
+    align-content: center;
+    background-image: url("./Images/Background.jpg");
+    background-size: auto;
+    
+}
+
+table {
+    border: 5px solid black; 
+    background-color: red;
+}
+
+td {
+    border: 5px solid black;
+    background-color: white;
+    margin: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+button {
+     
+        padding: 10px;
+        border: none;
+        background: none;
+        color: Red;
+        background-color: black;
+        width: 500px;
+        align-self: center;
+        font-size: 2em;
+    
+}
+
+.RedBox {
+    color: crimson;
+}
