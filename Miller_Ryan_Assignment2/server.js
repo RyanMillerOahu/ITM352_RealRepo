@@ -40,20 +40,28 @@ app.post("/purchase", function (request, response) {
             product_name = products_array[i].package;
 
             //Check to see if quantity entered is a positive integer
-            if (isNonNegInt(POST[product_name]) == true) { 
+            if (isNonNegInt(POST[product_name]) == true) {
                 selections == true;
-                IndexErrors_Object['Package' + [i]] = " ";
-             } else {
+                IndexErrors_Object['Package' + [i]] = "Error Free";
+            } else {
                 //If not valid add error message to specific package
                 NumberError = "Must Input Positive Interger Only or Zero"
                 IndexErrors_Object['Package' + [i]] = NumberError;
-            
-                console.log(Object.values(IndexErrors_Object), "HAzzah");
+                //Assign array of error messages to variable
+                Messages_Array = Object.values(IndexErrors_Object);
+                console.log(Messages_Array, "Array");
+                //Turn Array into String
+                Messages_Array_String = querystring.stringify(Messages_Array);
+                console.log(Messages_Array_String, "MessString");
+                //Append string to Query
+                request.query.ErrorMessagesX = Messages_Array_String;
+
+
                 //Turn object of errors into a string to be put in URL 
-IndexErrorsString = querystring.stringify(IndexErrors_Object);
+                IndexErrorsString = querystring.stringify(IndexErrors_Object);
 
 
-
+/*
                 var idx = [i];
                 //Get package name
                 var Package_Name = Object.keys(IndexErrors_Object)[idx];
@@ -67,6 +75,7 @@ IndexErrorsString = querystring.stringify(IndexErrors_Object);
                 ErrorStringAttempt = querystring.stringify(NewErrorPair);
                 request.query.Package_Name = ErrorStringAttempt;
                 console.log(ErrorStringAttempt, "HERE");
+                */
 
                 //Turn object of errors into a string to be put in URL 
                 IndexErrorsString = querystring.stringify(IndexErrors_Object);
@@ -75,8 +84,8 @@ IndexErrorsString = querystring.stringify(IndexErrors_Object);
 
                 console.log(IndexErrors_Object, "Object Created");
                 //
-            
-                
+
+
                 //To check if it works so far, CORRECTLY CREATES STRING BUT HOW DO I GET IT OUT OF INDEX
                 console.log(IndexErrorsString, "String Created");
 

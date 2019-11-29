@@ -11,7 +11,11 @@
     </script>
     <script>
         let params = (new URL(document.location)).searchParams;
-       
+        if (params.has("ErrorMessagesX")) {
+                ErrorMessagesX = params.get("ErrorMessagesX")
+                cosole.log(ErrorMessagesX, "From Index")
+            }
+/*
             //Take errors from query string and set them to custom variables
         for (i = 0; i < products_array.length; i++) {
             if (params.has("IndexErrors" + [i])) {
@@ -22,7 +26,7 @@
         for (i = 0; i < products_array.length; i++) {
             document.getElementById("IndexErrorBox" + [i]).innerHTML = IndexError[i];
         }
-
+*/
     </script>
 </head>
 
@@ -52,7 +56,7 @@
                             <td align = "center">Enter a Quantity:<br> <input type="text" name="${(products_array[i].package)}"
                                     onkeyup="checkQuantityTextbox(this);"><br><span id='qty_textbox_message'
                                     +"${[i]}">Dont Leave Blank<span></td>
-                            <td id="IndexErrorBox${[i]}" align = "center"></td>
+                            <td id="ErrorBox" align = "center">${(ErrorMessagesX[i])}</td>
                         </div>
                 </tr>
                 `);
