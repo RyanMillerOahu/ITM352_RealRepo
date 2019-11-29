@@ -40,10 +40,19 @@ app.post("/purchase", function (request, response) {
             product_name = products_array[i].package;
 
             //Check to see if quantity entered is a positive integer
-            if (isNonNegInt(POST[product_name]) == true) { selections == true } else {
+            if (isNonNegInt(POST[product_name]) == true) { 
+                selections == true;
+                IndexErrors_Object['Package' + [i]] = " ";
+             } else {
                 //If not valid add error message to specific package
                 NumberError = "Must Input Positive Interger Only or Zero"
                 IndexErrors_Object['Package' + [i]] = NumberError;
+            
+                console.log(Object.values(IndexErrors_Object), "HAzzah");
+                //Turn object of errors into a string to be put in URL 
+IndexErrorsString = querystring.stringify(IndexErrors_Object);
+
+
 
                 var idx = [i];
                 //Get package name
@@ -54,7 +63,7 @@ app.post("/purchase", function (request, response) {
                 NewErrorPair = Package_Name + "=" + Message;
                 //Diagnostic
                 console.log(typeof NewErrorPair);
-                //Add string to query (Final Boss should be Package_Name and = the error)
+                //Add string to query
                 ErrorStringAttempt = querystring.stringify(NewErrorPair);
                 request.query.Package_Name = ErrorStringAttempt;
                 console.log(ErrorStringAttempt, "HERE");
@@ -65,8 +74,11 @@ app.post("/purchase", function (request, response) {
                 request.query.IndexErrors = IndexErrorsString;
 
                 console.log(IndexErrors_Object, "Object Created");
-                //IndexErrors_Object.IndexError0 = "Pizza";
+                //
             
+                
+                //To check if it works so far, CORRECTLY CREATES STRING BUT HOW DO I GET IT OUT OF INDEX
+                console.log(IndexErrorsString, "String Created");
 
                 //Takes value key pairs from object created above, extracts the number quantity and makes an array of values.
                 //Object.keys(IndexErrors_Object).forEach(function (value, key) { IndexErrors_Object[key] = value });
@@ -74,10 +86,6 @@ app.post("/purchase", function (request, response) {
                 //ErrorMessages = Object.keys(IndexErrors_Object).map(function (value) {
                 //   return [IndexErrors_Object[key = value]];
                 //});
-
-                //To check if it works so far, CORRECTLY CREATES STRING BUT HOW DO I GET IT OUT OF INDEX
-                console.log(IndexErrorsString, "String Created");
-
 
                 //Set each key name values to its own loop generated variable 
                 //(IndexErrors_Object["IndexError" + [i]], "LORD"); How to access
