@@ -33,17 +33,21 @@ app.post("/purchase", function (request, response) {
         selections = false;
 
         for (i = 0; i < products_array.length; i++) {
-            //Start with each IndexError clean
-            IndexErrors_Object['Package' + [i]] = "No Errors";
-
             //Each quantity box is named after a package so find each package name to access each text box.
             product_name = products_array[i].package;
-
+            isvaliddata = isvaliddata && (isNonNegInt(POST[product_name]));
+            selections = selections || (POST[product_name] > 0);
+        }
+            //Start with each IndexError clean
+            //IndexErrors_Object['Package' + [i]] = "No Errors";
+           
+            /*
             //Check to see if quantity entered is a positive integer
             if (isNonNegInt(POST[product_name]) == true) {
                 selections == true;
                 IndexErrors_Object['Package' + [i]] = "Error Free";
             } else {
+                /*
                 //If not valid add error message to specific package
                 NumberError = "Must Input Positive Interger Only or Zero"
                 IndexErrors_Object['Package' + [i]] = NumberError;
@@ -66,13 +70,9 @@ app.post("/purchase", function (request, response) {
                 request.query.IndexErrors = IndexErrorsString;
 
                 console.log(IndexErrors_Object, "Object Created");
-            }
-            isvaliddata = isvaliddata && (isNonNegInt(POST[product_name]));
-            selections = selections || (POST[product_name] > 0);
-            console.log(isvaliddata, selections);
-        }
-
-
+                
+            }*/
+            
         //Take object and turns it into querystring then takes you to the loin page if the data is valid using the isnonNegInt function. Also uses flag validator above to ensure that quantities are greater than zero. If data is not valid server redirects you to invoice page with error messages and sticky quantities.
 
         if (isvaliddata && selections) {
@@ -80,24 +80,21 @@ app.post("/purchase", function (request, response) {
 
             response.redirect("login.html?" + qstring);
         } else {
+            /*
             //If not valid add Errors string to query so they can be displayed on page
             for (i = 0; i < products_array.length; i++) {
                 product_name = products_array[i].package;
                 console.log(product_name, "HOOORRAAY");
                 request.query.StickyQuantity = POST[product_name];
             }
-            qstring = querystring.stringify(request.query);
+            */
+            qstring = querystring.stringify(POST);
 
             //Input errors into new registration URL query so they can be used to display errors
             response.redirect("Index.html?" + qstring);
         }
     }
 });
-
-
-
-
-
 
 
 //Main data validator function (Borrowered from in class lab with Port)
