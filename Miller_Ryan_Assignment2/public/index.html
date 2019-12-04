@@ -12,6 +12,10 @@
     <script>
         let params = (new URL(document.location)).searchParams;
 
+        if (params.has("ErrorAlert")) {
+            alert(params.get("ErrorAlert"));
+        }
+
         //Get the query string values from form and turns them into an obect. (Borrowed from Port)
         quantities = {};
         params.forEach(function (value, key) { quantities[key] = value });
@@ -98,40 +102,8 @@
 <script>
     //Input values from query string back into their designated textboxes if form data is not valid
     for (i = 0; i < products_array.length; i++) {
-        document.getElementById([i]).value = sticky_quantity[i];
-    }
-/*
-    window.onload = function () {
-for (i = 0; i < products_array.length; i++) {
-        document.getElementById([i]).value = sticky_quantity[i];
-        function checkQuantityTextbox(product_display[(products_array[i].package)]) {
-        errs = isNonNegInt(theTextbox.value, true);
-        if (errs.length == 0) errs = [' '];
-        if (theTextbox.value.trim() == '') errs = ['Dont Leave Blank'];
-        document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+        product_display[products_array[i].package].value = sticky_quantity[i];
+        checkQuantityTextbox(product_display[products_array[i].package]);
     }
 
-    }
-
-        let params = (new URL(document.location)).searchParams; // gets query string + form data
-        // when form is submitted, check if quantities are valid then redirect to invoice
-            for (i = 0; i < products.length; i++) {
-                if (params.has(`${(products_array[i].package)}`)) {
-                    a_qty = params.get(`${(products_array[i].package)}`);
-                    // make textboxes sticky in case of invalid data
-                    if (!isNonNegInt(a_qty)) {
-                        has_errors = true; // if there is invalid quantity
-                        checkQuantityTextbox(product_display[`${(products_array[i].package)}`]); // state the error
-                    }
-                }
-            }
-            //give an alert if there is an error or redirect to invoice if values are valid
-            if (has_errors) {
-                alert("Enter valid quantity");
-            } else if (total_qty == 0) { //alert for no quantities chosen
-                alert("Please select some quantities for the items you want to purchase.");
-            } 
-        
-        }
-        */
 </script>

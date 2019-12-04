@@ -1,3 +1,5 @@
+//RYAN MILLER
+
 var express = require('express');
 var myParser = require("body-parser");
 
@@ -38,41 +40,7 @@ app.post("/purchase", function (request, response) {
             isvaliddata = isvaliddata && (isNonNegInt(POST[product_name]));
             selections = selections || (POST[product_name] > 0);
         }
-            //Start with each IndexError clean
-            //IndexErrors_Object['Package' + [i]] = "No Errors";
-           
-            /*
-            //Check to see if quantity entered is a positive integer
-            if (isNonNegInt(POST[product_name]) == true) {
-                selections == true;
-                IndexErrors_Object['Package' + [i]] = "Error Free";
-            } else {
-                /*
-                //If not valid add error message to specific package
-                NumberError = "Must Input Positive Interger Only or Zero"
-                IndexErrors_Object['Package' + [i]] = NumberError;
-                //Assign array of error messages to variable
-                Messages_Array = Object.values(IndexErrors_Object);
-                console.log(Messages_Array, "Array");
-                //Turn Array into String
-                Messages_Array_String = querystring.stringify(Messages_Array);
-                console.log(Messages_Array_String, "MessString");
-                //Append string to Query
-                request.query.ErrorMessagesX = Messages_Array_String;
-
-
-                //Turn object of errors into a string to be put in URL 
-                IndexErrorsString = querystring.stringify(IndexErrors_Object);
-
-                //Turn object of errors into a string to be put in URL 
-                IndexErrorsString = querystring.stringify(IndexErrors_Object);
-                //Set string to value within URL
-                request.query.IndexErrors = IndexErrorsString;
-
-                console.log(IndexErrors_Object, "Object Created");
-                
-            }*/
-            
+ 
         //Take object and turns it into querystring then takes you to the loin page if the data is valid using the isnonNegInt function. Also uses flag validator above to ensure that quantities are greater than zero. If data is not valid server redirects you to invoice page with error messages and sticky quantities.
 
         if (isvaliddata && selections) {
@@ -80,18 +48,13 @@ app.post("/purchase", function (request, response) {
 
             response.redirect("login.html?" + qstring);
         } else {
-            /*
-            //If not valid add Errors string to query so they can be displayed on page
-            for (i = 0; i < products_array.length; i++) {
-                product_name = products_array[i].package;
-                console.log(product_name, "HOOORRAAY");
-                request.query.StickyQuantity = POST[product_name];
-            }
-            */
+            BadEntry = "You input erronious quantities, try again."
+            request.query.ErrorAlert = BadEntry;
             qstring = querystring.stringify(POST);
-
+            Errorstring = querystring.stringify(request.query);
+            
             //Input errors into new registration URL query so they can be used to display errors
-            response.redirect("Index.html?" + qstring);
+            response.redirect("Index.html?" + qstring + "&&" + Errorstring);
         }
     }
 });
@@ -134,9 +97,10 @@ if (fs.existsSync(filename)) {
 }
 
 
-//When you hit the login button you want to validate data, if good send to custome invoice
+
 //DONE DONT CHANGE
 
+//When you hit the login button you want to validate data, if good send to custome invoice
 app.post("/LoginForm", function (request, response) {
     // Process login form POST and redirect to custom invoice page if ok, back to login page if not
     console.log(request.body, "worked");
@@ -235,7 +199,6 @@ app.post("/register", function (request, response) {
     }
 
     //Validate Password and Confirm Password input
-
     if (INFO.Pass.length < 6) {
         pass_errors.PassError = "Pass to short";
         haserrors = true;
@@ -253,9 +216,7 @@ app.post("/register", function (request, response) {
         haserrors = true;
     }
 
-    //Validate Email Input
-
-    //Validates Email Address (Taken from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript)
+    //Validate Email Input (Taken from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript)
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(INFO.Email)) {
     } else {
         email_errors.EmailError = "Invalid email address";
@@ -298,9 +259,9 @@ app.post("/register", function (request, response) {
 
     } else {
         //If not valid add Errors string to query so they can be displayed on page
-        request.query.StickyUser = INFO.Username
-        request.query.StickyName = INFO.Name
-        request.query.StickyEmail = INFO.Email
+        request.query.StickyUser = INFO.Username;
+        request.query.StickyName = INFO.Name;
+        request.query.StickyEmail = INFO.Email;
         request.query.user_errors = user_errors_string;
         request.query.name_errors = name_errors_string;
         request.query.pass_errors = pass_errors_string;

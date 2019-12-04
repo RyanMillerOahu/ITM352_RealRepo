@@ -23,9 +23,11 @@
     <script src="./Product_info.js"></script>
     <script>
         let params = (new URL(document.location)).searchParams;
+        //Display login error if there is one, finds error in URL string
         if (params.has("LoginError")) {
             alert(params.get("LoginError"));
         }
+        //Takes data from url when page is invalid and puts it back (makes inputs sticky)
         if (params.has("StickyLoginUser")) {
             StickyLoginUser = params.get("StickyLoginUser")
         }
@@ -69,7 +71,6 @@
 <script>
     //Sends link with quantity data to pass to next page
     reg_link.href = "registration.html" + document.location.search;
-
     Login_Form.action = "./LoginForm" + document.location.search;
     //Inputs sticky User so they know what they just put, passwords are never sticky so just for user.
     document.getElementById("Userbox").value = StickyLoginUser;
