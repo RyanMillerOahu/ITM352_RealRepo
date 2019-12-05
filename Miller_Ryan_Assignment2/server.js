@@ -1,5 +1,4 @@
 //RYAN MILLER
-
 var express = require('express');
 var myParser = require("body-parser");
 
@@ -14,19 +13,14 @@ var app = express();
 var querystring = require("querystring");
 fs = require('fs');
 var filename = 'user_data.json';
-//Better to use variable because its more flexible for when things change
-
-
-
 
 //Turns complicated HTML page into easy to read data, links server so that it can recieve requests from index page
 
 app.use(myParser.urlencoded({ extended: true }));
 app.post("/purchase", function (request, response) {
     let POST = request.body;
-    console.log(POST)
-    IndexErrors_Object = {};
-    IndexErrors_Array = [];
+    //Diagnostic
+    console.log(POST);
 
     //Asking to see if submit button was pressed
     if (typeof POST['submit'] != 'undefined') {
@@ -37,10 +31,12 @@ app.post("/purchase", function (request, response) {
         for (i = 0; i < products_array.length; i++) {
             //Each quantity box is named after a package so find each package name to access each text box.
             product_name = products_array[i].package;
+            //Run validation using isNonNegInt on each quantity box
             isvaliddata = isvaliddata && (isNonNegInt(POST[product_name]));
+            //Ensure custor orders something
             selections = selections || (POST[product_name] > 0);
         }
- 
+
         //Take object and turns it into querystring then takes you to the loin page if the data is valid using the isnonNegInt function. Also uses flag validator above to ensure that quantities are greater than zero. If data is not valid server redirects you to invoice page with error messages and sticky quantities.
 
         if (isvaliddata && selections) {
@@ -48,13 +44,13 @@ app.post("/purchase", function (request, response) {
 
             response.redirect("login.html?" + qstring);
         } else {
-            BadEntry = "You input erronious quantities, try again."
+            BadEntry = "You input erronious quantities or didnt order something, try again."
             request.query.ErrorAlert = BadEntry;
             qstring = querystring.stringify(POST);
             Errorstring = querystring.stringify(request.query);
-            
+
             //Input errors into new registration URL query so they can be used to display errors
-            response.redirect("Index.html?" + qstring + "&&" + Errorstring);
+            response.redirect("index.html?" + qstring + "&&" + Errorstring);
         }
     }
 });
@@ -93,14 +89,11 @@ if (fs.existsSync(filename)) {
     console.log(users_reg_data);
     //As long as usernames are identifiers you can use dot notation. Has to follow identifier rules
 } else {
+    //Diagnostic
     console.log(filename + 'does not exist!');
 }
 
-
-
-//DONE DONT CHANGE
-
-//When you hit the login button you want to validate data, if good send to custome invoice
+//When you hit the login button you want to validate data, if good send to custom invoice
 app.post("/LoginForm", function (request, response) {
     // Process login form POST and redirect to custom invoice page if ok, back to login page if not
     console.log(request.body, "worked");
@@ -113,13 +106,11 @@ app.post("/LoginForm", function (request, response) {
     //Validate login data
     if (typeof users_reg_data[the_username] != 'undefined') {
         //Asking object if it has matching username, if it doesnt itll be undefined.
+        //If username is define ask for matching password
         if (users_reg_data[the_username].password == request.body.password) {
             //Diagnostic
             console.log("Successful login", request.query);
-            //If login is vaild save name and data and send to invoice to make custom invoice, string is getting lost
-
-            //Redirect them to invoice here if they logged in correctly
-            //How do I take name from query and input into invoice???
+            //If login is vaild save name and data and send to invoice to make custom invoice
             request.query.InvoiceName = users_reg_data[the_username].name;
             qstring = querystring.stringify(request.query);
             response.redirect("invoice.html?" + qstring);
@@ -129,34 +120,34 @@ app.post("/LoginForm", function (request, response) {
     else {
         error = the_username + " Username does not exist";
 
-    }
+    } 
     //Give you error message alert if password or username is flawed.
     request.query.LoginError = error;
     //Used to make login sticky so you dont have to retype it everytime you get the password wrong
     request.query.StickyLoginUser = the_username;
     qstring = querystring.stringify(request.query);
     response.redirect("login.html?" + qstring);
+
 });
 
-//DONE DONT CHANGE
-
-
-//Validates data in registration form and send you to success page if data is valid, if not it sends you back to register page with errors
+//Validates data in registration form and sends you to success page if data is valid, if not it sends you back to register page with errors
 
 app.post("/register", function (request, response) {
     let INFO = request.body;
     //Makes the username case-insensitive
     username = INFO.Username.toLowerCase();
-    //Resest Errors in string so them dont carry over if user messes up multiple times
 
-    console.log(request.query.user_errors, "HERE")
+    // Diagnostic
+    console.log(request.query.user_errors);
     //Used to store errors, gonna put the errors in a string that gets loaded when you redirect back to registration page
+    //Also resests Errors in string so them dont carry over if user messes up multiple times
     user_errors = {};
     name_errors = {};
     pass_errors = {};
     confirm_pass_errors = {};
     email_errors = {};
 
+    //Create error flag
     haserrors = false;
 
     //Validate registration data
@@ -236,7 +227,7 @@ app.post("/register", function (request, response) {
 
 
     //If valid turn form values into an object that is saved and stored in JSON file
-    //Set up error flag
+    //Activate error flag
     if (haserrors == false) {
         users_reg_data[username] = {};
         users_reg_data[username].name = INFO.Name;
@@ -283,5 +274,4 @@ app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
 
 //JSON DATA: You get all these properties that are usernames stored with all the information that corresponds with the username, convienent for saving and using user info. Dont need to search, just ask for username and have acess to all data, easy to add new object. Data stored as text in a file. Load it in and turn it into a JSON object that js can use. 
-//Login processing has to be done on server because the server is the only one that can read the file
-//GET user and pass from form, check to see if it exists, if it does get password, then check to see that it matches password you entered. 
+

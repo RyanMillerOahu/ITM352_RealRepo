@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+<style>
+    input[type=submit] {
+        padding: 10px; 
+        border: none; 
+        background: none;
+        color: Red;
+        background-color: black;
+        width: 500px;
+        align-self: center;
+        font-size: 2em;
+    }
+    
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Part B.css">
+    <title>Registration Page</title>
+
+    <script>
+
+        //Take errors from URL and input them into proper locations
+        let params = (new URL(document.location)).searchParams;
+        if (params.has("user_errors")) {
+            user_errors = params.get("user_errors");
+        }
+        if (params.has("name_errors")) {
+            name_errors = params.get("name_errors");
+        }
+        if (params.has("pass_errors")) {
+            pass_errors = params.get("pass_errors");
+        }
+        if (params.has("confirm_pass_errors")) {
+            confirm_pass_errors = params.get("confirm_pass_errors");
+        }
+        if (params.has("email_errors")) {
+            email_errors = params.get("email_errors");
+        }
+        if (params.has("StickyUser")) {
+            StickyUser = params.get("StickyUser")
+        }
+        if (params.has("StickyName")) {
+            StickyName = params.get("StickyName")
+        }
+        if (params.has("StickyEmail")) {
+            StickyEmail = params.get("StickyEmail")
+        }
+    </script>
+
+
+</head>
+
+<body class="content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <form id="reg_form" method="POST" name="Registration_Form">
+        <table>
+            <tr>
+                <th colspan="3"><p id = "title">Registration Form</p></th>
+            </tr>
+            <tr>
+                <td><label for="Username">Username:</label></td>
+                <td><input type="text" name="Username" value="" id="Username"></td>
+                <td id=UsernameError class="RedBox">
+                    <script>document.write(`${user_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Name">First Name:</label></td>
+                <td><input type="text" name="Name" value="" id="Name"></td>
+                <td id=NameError class="RedBox">
+                        <script>document.write(`${name_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Pass">Password</label></td>
+                <td><input type="password" name="Pass" value="" id="Pass"></td>
+                <td id=PassError class="RedBox">
+                        <script>document.write(`${pass_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="ConfirmPass">Confirm Password:</label></td>
+                <td><input type="password" name="ConfirmPass" value="" id="ConfirmPass"></td>
+                <td id=ConfirmError class="RedBox">
+                        <script>document.write(`${confirm_pass_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Email">Email:</label></td>
+                <td><input type="text" name="Email" value="" id="Email"></td>
+                <td id=EmailError class="RedBox">
+                        <script>document.write(`${email_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" id="submit_reg"><input type="submit" name="submit" value="Register"></td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</body>
+
+</html>
+
+<script>
+    //Sets link with quantity data to pass to next page
+    reg_form.action = "/register" + document.location.search;
+
+    //Makes inputs sticky in case of invalidity
+        document.getElementById("Username").value = StickyUser;
+        document.getElementById("Name").value = StickyName;
+        document.getElementById("Email").value = StickyEmail;
+    </script>

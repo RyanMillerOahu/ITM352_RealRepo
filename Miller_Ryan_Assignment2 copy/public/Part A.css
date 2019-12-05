@@ -1,0 +1,89 @@
+
+img {
+    border: 1px solid gray;
+    /* Gray border */
+    border-radius: 360px;
+    /* Rounded border */
+    padding: 5px;
+    /* Some padding */
+    /* Set a small width */
+}
+
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+footer , header {
+    background-color: red;
+    border: 5px solid black;
+}
+
+body {
+    width: fit-content;
+    align-content: center;
+    background-image: url("./Images/Background.jpg");
+    background-size: auto;
+}
+
+#productbox {
+    background-color:white;
+    width: 250px;
+}
+
+table {
+    border: 5px solid black; 
+    background-color: red;
+}
+
+td {
+    border: 5px solid black;
+    background-color: white;
+}
+
+#description {
+    width: 300px;
+    padding: 10px;
+}
+
+#headerpic {
+    border-radius: 0px;
+    height: auto;
+    padding: 0;
+    width: 100%;
+}
+
+#submit{
+    border: 5px solid black;
+    background-color: black;
+    }
+
+    input[type=submit] {
+        padding: 0px; 
+        border: none; 
+        color: Red;
+        background-color: black;
+        width: 720px;
+        align-self: center;
+        font-size: 2em;
+    }
+
+    .content {
+        max-width: 600px;
+        margin: auto;
+    }
+
+#IndexErrorBox {
+    color: red;
+}
+
+.headings {
+    padding: 5px;
+    background-color: red;
+    font-size: 3em;
+}
+
