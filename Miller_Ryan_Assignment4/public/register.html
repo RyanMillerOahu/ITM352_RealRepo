@@ -1,0 +1,154 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Page</title>
+
+    <script>
+
+        //Take errors from URL and input them into proper locations
+        let params = (new URL(document.location)).searchParams;
+        if (params.has("user_errors")) {
+            user_errors = params.get("user_errors");
+        }
+        if (params.has("name_errors")) {
+            name_errors = params.get("name_errors");
+        }
+        if (params.has("pass_errors")) {
+            pass_errors = params.get("pass_errors");
+        }
+        if (params.has("confirm_pass_errors")) {
+            confirm_pass_errors = params.get("confirm_pass_errors");
+        }
+        if (params.has("email_errors")) {
+            email_errors = params.get("email_errors");
+        }
+        if (params.has("StickyUser")) {
+            StickyUser = params.get("StickyUser")
+        }
+        if (params.has("StickyName")) {
+            StickyName = params.get("StickyName")
+        }
+        if (params.has("StickyEmail")) {
+            StickyEmail = params.get("StickyEmail")
+        }
+        if (params.has("StickyGoal")) {
+            StickyGoal = params.get("StickyGoal")
+        }
+        if (params.has("StickyExperience")) {
+            StickyExperience = params.get("StickyExperience")
+        }
+        if (params.has("StickyWorkout")) {
+            StickyWorkout = params.get("StickyWorkout")
+        }
+
+    </script>
+
+</head>
+
+<body class="content">
+
+    <form id="reg_form" method="POST" action="/register" name="Registration_Form">
+        <table>
+            <tr>
+                <th colspan="3">
+                    <p id="title">Registration Form</p>
+                </th>
+            </tr>
+            <tr>
+                <td><label for="Username">Username:</label></td>
+                <td><input type="text" name="Username" value="" id="Username"></td>
+                <td id=UsernameError class="RedBox">
+                    <script>document.write(`${user_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Name">First Name:</label></td>
+                <td><input type="text" name="Name" value="" id="Name"></td>
+                <td id=NameError class="RedBox">
+                    <script>document.write(`${name_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Pass">Password</label></td>
+                <td><input type="password" name="Pass" value="" id="Pass"></td>
+                <td id=PassError class="RedBox">
+                    <script>document.write(`${pass_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="ConfirmPass">Confirm Password:</label></td>
+                <td><input type="password" name="ConfirmPass" value="" id="ConfirmPass"></td>
+                <td id=ConfirmError class="RedBox">
+                    <script>document.write(`${confirm_pass_errors}`);</script>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Email">Email:</label></td>
+                <td><input type="text" name="Email" value="" id="Email"></td>
+                <td id=EmailError class="RedBox">
+                    <script>document.write(`${email_errors}`);</script>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Fitness Goal:
+                </td>
+                <td>
+                    <input name="Goal" type="radio" value="Stronger"> Stronger <br>
+                    <input name="Goal" type="radio" value="Aesthetic"> Aesthetic <br>
+                </td>
+                <td id=GoalError class="RedBox">
+                        <script>document.write(`${goal_error}`);</script>
+                    </td>
+            </tr>
+            <tr>
+                <td>
+                    Experience Level:
+                </td>
+                <td>
+                    <input name="Experience" type="radio" value="Novice"> Inexperienced <br>
+                    <input name="Experience" type="radio" value="Advanced"> Experienced <br>
+                </td>
+                <td id=ExperienceError class="RedBox">
+                        <script>document.write(`${experience_error}`);</script>
+                    </td>
+            </tr>
+            <tr>
+                <td>
+                    First Workout:
+                </td>
+                <td>
+                    <input name="Workout" type="radio" value=0> Push <br>
+                    <input name="Workout" type="radio" value=1> Pull <br>
+                    <input name="Workout" type="radio" value=2> Legs <br>
+                </td>
+                <td id=WorkoutError class="RedBox">
+                        <script>document.write(`${workout_error}`);</script>
+                    </td>
+            </tr>
+<tr>
+                <td colspan="3" id="submit_reg"><input type="submit" name="submit" value="Register"></td>
+            </tr>
+
+
+        </table>
+
+    </form>
+
+</body>
+
+</html>
+
+<script>
+    //Makes inputs sticky in case of invalidity
+    document.getElementById("Username").value = StickyUser;
+    document.getElementById("Name").value = StickyName;
+    document.getElementById("Email").value = StickyEmail;
+    document.getElementById("Goal").value = StickyGoal;
+    document.getElementById("Experience").value = StickyExperience;
+    document.getElementById("Workout").value = StickyWorkout;
+</script>
