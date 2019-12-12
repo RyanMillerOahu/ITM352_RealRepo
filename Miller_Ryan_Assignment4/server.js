@@ -243,7 +243,21 @@ app.post("/register", function (request, response) {
         request.query.StickyEmail = INFO.Email;
         request.query.StickyGoal = INFO.Goal;
         request.query.StickyExperience = INFO.Experience;
-        request.query.StickyWorkout = INFO.Workout;
+
+        console.log(typeof INFO.Workout, INFO.Workout,  "THIS SHIT");
+
+        //Create unique ID names to generate stick radio data
+       if (INFO.Workout == "0"){
+           Sticky_W = "0";
+       } else if (INFO.Workout == "1"){
+        Sticky_W = "1";
+       } else if (INFO.Workout == "2"){
+           Sticky_W = "2";
+       }
+
+       console.log(Sticky_W, "RIght Here");
+
+        request.query.StickyWorkout = Sticky_W;
         request.query.user_errors = user_errors_string;
         request.query.name_errors = name_errors_string;
         request.query.pass_errors = pass_errors_string;

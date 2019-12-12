@@ -122,9 +122,9 @@
                     First Workout:
                 </td>
                 <td>
-                    <input name="Workout" type="radio" value=0> Push <br>
-                    <input name="Workout" type="radio" value=1> Pull <br>
-                    <input name="Workout" type="radio" value=2> Legs <br>
+                    <input id = "Workout0" name="Workout" type="radio" value=0> Push <br>
+                    <input id = "Workout1" name="Workout" type="radio" value=1> Pull <br>
+                    <input id = "Workout2" name="Workout" type="radio" value=2> Legs <br>
                 </td>
                 <td id=WorkoutError class="RedBox">
                         <script>document.write(`${workout_error}`);</script>
@@ -150,5 +150,5 @@
     document.getElementById("Email").value = StickyEmail;
     document.getElementById("Goal").value = StickyGoal;
     document.getElementById("Experience").value = StickyExperience;
-    document.getElementById("Workout").value = StickyWorkout;
+    document.getElementById("Workout"+StickyWorkout).checked = true;
 </script>
