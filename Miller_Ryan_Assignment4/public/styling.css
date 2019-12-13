@@ -1,0 +1,20 @@
+body {
+    background-color: gray;
+    background-image: url("./images/background2.jpg");
+    background-repeat: no-repeat;
+    color: white;
+}
+
+table {
+    color: white;
+}
+
+h1 {
+    align-content: center;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+

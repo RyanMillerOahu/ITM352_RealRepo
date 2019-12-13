@@ -231,7 +231,7 @@ app.post("/register", function (request, response) {
         //Inputs command to display successful registration before moving to invoice page.
         request.query.SuccessfulReg = "Registration / Login Successful!";
         qstring = querystring.stringify(request.query);
-        
+
         response.cookie('username', username, { maxAge: 60 * 1000 * 10 }).redirect("/generate_workout");
         //request.session();
         //response.redirect("output.html?" + qstring);
@@ -241,22 +241,41 @@ app.post("/register", function (request, response) {
         request.query.StickyUser = INFO.Username;
         request.query.StickyName = INFO.Name;
         request.query.StickyEmail = INFO.Email;
-        request.query.StickyGoal = INFO.Goal;
-        request.query.StickyExperience = INFO.Experience;
-
-        console.log(typeof INFO.Workout, INFO.Workout,  "THIS SHIT");
 
         //Create unique ID names to generate stick radio data
-       if (INFO.Workout == "0"){
-           Sticky_W = "0";
-       } else if (INFO.Workout == "1"){
-        Sticky_W = "1";
-       } else if (INFO.Workout == "2"){
-           Sticky_W = "2";
-       }
+        /*
+        console.log(INFO.Goal, "THE GOAL");
+        if (INFO.Goal == "Stronger") {
+            Sticky_G == "Stronger";
+        } else if (INFO.Goal == "Aesthetic") {
+            Sticky_G == "Aesthetic";
+        }
+        request.query.StickyGoal = Sticky_G;
+*/
+        console.log(INFO.Experience, typeof INFO.Experience, "Experience HERE");
+        //Create unique ID names to generate stick radio data
+        if (INFO.Experience == "Novice") {
+            Sticky_E = "Novice";
+        } else if (INFO.Experience == "Advanced") {
+            Sticky_E = "Advanced";
+        } else {
+            Sticky_E = "Novice";
+        }
+        console.log(Sticky_E, "THE E");
+        request.query.StickyExperience = Sticky_E;
 
-       console.log(Sticky_W, "RIght Here");
-
+        console.log(INFO.Workout, typeof INFO.Workout, "HERERERE");
+        //Create unique ID names to generate stick radio data
+        if (INFO.Workout == "0") {
+            Sticky_W = "Workout0";
+        } else if (INFO.Workout == "1") {
+            Sticky_W = "Workout1";
+        } else if (INFO.Workout == "2") {
+            Sticky_W = "Workout2";
+        } else {
+            Sticky_W = "Workout0";
+        }
+        console.log(Sticky_W, "RM");
         request.query.StickyWorkout = Sticky_W;
         request.query.user_errors = user_errors_string;
         request.query.name_errors = name_errors_string;
@@ -274,7 +293,7 @@ app.post("/register", function (request, response) {
 
 //Build Respone to Input Information
 app.get("/generate_workout", function (request, response) {
-   
+
     //IF USER ISNT LOGGED IN SEND TO LOGIN
     if (typeof request.cookies.username == "undefined") {
         response.redirect("index.html");
@@ -294,36 +313,36 @@ app.get("/generate_workout", function (request, response) {
     //workout_data = fs.readFileSync(workout_data_filename, 'utf-8');
 
 
-//WORKOUTS
-             A_N_Push = ["Bench", "Ex2", "Ex3", "Ex4", "Ex5"];
-             A_N_Pull = ["Deadlift", "Ex2", "Ex3", "Ex4", "Ex5"];
-             A_N_Legs = ["Squats", "Ex2", "Ex3", "Ex4", "Ex5"];
-         A_Novice_Array = [A_N_Push, A_N_Pull, A_N_Legs];   
-             A_A_Push = ["Bench", "Ex2", "Ex3", "Ex4", "Ex5"];
-             A_A_Pull = ["Deadlift", "Ex2", "Ex3", "Ex4", "Ex5"];
-             A_A_Legs = ["Squats", "Ex2", "Ex3", "Ex4", "Ex5"];
-         A_Advanced_Array = [A_A_Push, A_A_Pull, A_A_Legs];  
-  
-Aesthetic_Array = [A_Novice_Array, A_Advanced_Array];
+    //WORKOUTS
+    A_N_Push = ["Bench", "Ex2", "Ex3", "Ex4", "Ex5"];
+    A_N_Pull = ["Deadlift", "Ex2", "Ex3", "Ex4", "Ex5"];
+    A_N_Legs = ["Squats", "Ex2", "Ex3", "Ex4", "Ex5"];
+    A_Novice_Array = [A_N_Push, A_N_Pull, A_N_Legs];
+    A_A_Push = ["Bench", "Ex2", "Ex3", "Ex4", "Ex5"];
+    A_A_Pull = ["Deadlift", "Ex2", "Ex3", "Ex4", "Ex5"];
+    A_A_Legs = ["Squats", "Ex2", "Ex3", "Ex4", "Ex5"];
+    A_Advanced_Array = [A_A_Push, A_A_Pull, A_A_Legs];
 
-   
-             S_N_Push = [" Bench", " OHP", " Incline DB", " DB Tricep Extension", " Tricep Cable Pull"];
-             S_N_Pull = ["Deadlift", "Ex2", "Ex3", "Ex4", "Ex5"];
-             S_N_Legs = ["Squat", "Ex2", "Ex3", "Ex4", "Ex5"];
-        S_Novice_Array = [S_N_Push, S_N_Pull, S_N_Legs];
-             S_A_Push = ["Bench", "Ex2", "Ex3", "Ex4", "Ex5"];
-             S_A_Pull = ["Deadlift", "Ex2", "Ex3", "Ex4", "Ex5"];
-             S_A_Legs = ["Squat", "Ex2", "Ex3", "Ex4", "Ex5"];
-        S_Advanced_Array = [S_A_Push, S_A_Pull, S_A_Legs];
+    Aesthetic_Array = [A_Novice_Array, A_Advanced_Array];
+
+
+    S_N_Push = [" Deadlift: 3 Rep Max > 5x5", " Seated Row: 5x8", " Cross Cable Pull: 4x12", " EZ Bar Curls: 4x10", " Shrugs: 3x8"];
+    S_N_Pull = [" Squat: 5 Rep Max > 4x12", " RDL: 3x10", " Lunges: 3x10 each leg", " Hamstring Curl: 3x10", " Calves: 4x20"];
+    S_N_Legs = [" Bench: 1 Rep Max > 4x4", " Push Press: 3x4", " Heavy Dips: 3x10", " Peck Deck: 3x10", " DB Tricep Extension: 3x10"];
+    S_Novice_Array = [S_N_Push, S_N_Pull, S_N_Legs];
+    S_A_Push = ["Dead", "Ex2", "Ex3", "Ex4", "Ex5"];
+    S_A_Pull = ["Squat", "Ex2", "Ex3", "Ex4", "Ex5"];
+    S_A_Legs = ["Bench", "Ex2", "Ex3", "Ex4", "Ex5"];
+    S_Advanced_Array = [S_A_Push, S_A_Pull, S_A_Legs];
 
     Stronger_Array = [S_Novice_Array, S_Advanced_Array];
 
-Goal_Array = [Stronger_Array, Aesthetic_Array]; 
+    Goal_Array = [Stronger_Array, Aesthetic_Array];
 
 
     //LOGIC GOES HERE
     //0 = Push, 1 = Pull, 2 = Legs
-    Ex_Array = [0,1,2];
+    Ex_Array = [0, 1, 2];
 
     if (theUserInfo.goal == "Stronger") {
         if (theUserInfo.experience == "Novice") {
@@ -363,7 +382,7 @@ Goal_Array = [Stronger_Array, Aesthetic_Array];
         }
     }
 
-console.log(OfficalWorkout);
+    console.log(OfficalWorkout);
 
     /*
     WorkoutString = "";
@@ -373,20 +392,34 @@ console.log(OfficalWorkout);
     }
     */
 
-    response.send(page_str + "Your New Workout:" + OfficalWorkout);
+    Official_Workout_Print = `<br><br><br><br><br><br><br><br><br>`;
+    Official_Workout_Print += `<body style = "background-color: black; color: white;");"><table align="center"`;
+    Official_Workout_Print += `<tr><th style="font-size: 2em;">${theUserInfo.name}'s New Workout:</th></tr><tr><td style = "color: red">Ex1: ${OfficalWorkout[0]}</td></tr>`;
+    Official_Workout_Print += `<tr><td style = "color: red">Ex2: ${OfficalWorkout[1]}</td></tr>`;
+    Official_Workout_Print += `<tr><td style = "color: red">Ex3: ${OfficalWorkout[2]}</td></tr>`;
+    Official_Workout_Print += `<tr><td style = "color: red">Ex4: ${OfficalWorkout[3]}</td></tr>`;
+    Official_Workout_Print += `<tr><td style = "color: red">Ex5: ${OfficalWorkout[4]}</td></tr><tr></tr>`;
+    Official_Workout_Print += `<tr><th style="font-size: 2em;">Generated By:</th></tr><tr><td style = "color: red">Your Goal: ${theUserInfo.goal}</tr></td>`;
+    Official_Workout_Print += `<tr><td style = "color: red">Your Experience Level: ${theUserInfo.experience}</tr></td>`;
+    Official_Workout_Print += `<tr><td style = "color: red">Your Last Workout (0=Push, 1=Pull, 2=Legs): ${theUserInfo.last_workout}</tr></td></table></body>`;
 
-//Alterworkout each day (How can I use cookie)
+    HTML_Package = ``;
 
-if (theUserInfo.last_workout == Ex_Array.length - 1){
-theUserInfo.last_workout = 0;
-}
-else {
-    theUserInfo.last_workout += 1;
-}
-users_reg_data[CookieUsername].last_workout = theUserInfo.last_workout; 
-fs.writeFileSync(user_data_filename, JSON.stringify(users_reg_data));
 
-console.log("We Made it");
+    response.send(Official_Workout_Print + HTML_Package);
+
+    //Alterworkout each day (How can I use cookie)
+
+    if (theUserInfo.last_workout == Ex_Array.length - 1) {
+        theUserInfo.last_workout = 0;
+    }
+    else {
+        theUserInfo.last_workout += 1;
+    }
+    users_reg_data[CookieUsername].last_workout = theUserInfo.last_workout;
+    fs.writeFileSync(user_data_filename, JSON.stringify(users_reg_data));
+
+    console.log("We Made it");
 
 
 });

@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styling.css">
     <title>Login Page</title>
     <script src="./workouts.js"></script>
-    
-    <style>
-    .content {
-        max-width: 350px;
-        margin: auto;
-    }
-    </style>
+
 
     <script>
         let params = (new URL(document.location)).searchParams;
@@ -30,25 +25,20 @@
 
 <body class="content">
 <br><br><br><br><br><br><br>
-    Welcome to The Daily Grind <br>
-    Find the workout right for you every day of the week!
+   <h1>The Daily Grind . . .</h1>
+    
 
     <Table>
         <tr>
-            <th colspan="">
-                <p id="title">Login</p>
-            </th>
-        </tr>
-        <tr>
             <td>
                 <form method="POST" name="Login_Form" action="./LoginForm">
-                    <input type="text" name="username" size="50" id="Userbox" placeholder="Enter Username">
+                    <input type="text" name="username" size="40" id="Userbox" placeholder="Enter Username">
 
             </td>
         </tr>
         <tr>
             <td>
-                <input type="password" name="password" size="50" placeholder="Enter Password">
+                <input type="password" name="password" size="40" placeholder="Enter Password">
             </td>
         </tr>
         <tr>
