@@ -45,6 +45,15 @@
             StickyWorkout = params.get("StickyWorkout")
             console.log(StickyWorkout);
         }
+        if (params.has("BoxAlert")) {
+            Alert = params.get("BoxAlert")
+            if (Alert == "BoxAlert2") {
+           alert("Custom workout inputs will be decided for you if you do not check each box.")
+        } else if (Alert == "BoxAlert1"){
+            alert("Input Valid Data.")
+        }
+    }
+        
 
     </script>
 
@@ -100,8 +109,8 @@
                     Fitness Goal:
                 </td>
                 <td>
-                    <input name="Goal" type="radio" value="Stronger"> Stronger <br>
-                    <input name="Goal" type="radio" value="Aesthetic"> Aesthetic <br>
+                    <input id="Stronger" name="Goal" type="radio" value="Stronger"> Stronger <br>
+                    <input id="Aesthetic" name="Goal" type="radio" value="Aesthetic"> Aesthetic <br>
                 </td>
                 <td id=GoalError class="RedBox">
                         <script>//document.write(`${goal_error}`);</script>
@@ -116,7 +125,7 @@
                     <input id = "Advanced" name="Experience" type="radio" value="Advanced"> Experienced <br>
                 </td>
                 <td id=ExperienceError class="RedBox">
-                        <script>//document.write(`${experience_error}`);</script>
+                        <script>document.write(`${experience_error}`);</script>
                     </td>
             </tr>
             <tr>
@@ -129,7 +138,7 @@
                     <input id = "Workout2" name="Workout" type="radio" value=2> Legs <br>
                 </td>
                 <td id=WorkoutError class="RedBox">
-                        <script>//document.write(`${workout_error}`);</script>
+                        <script>document.write(`${workout_error}`);</script>
                     </td>
             </tr>
 <tr>
@@ -150,7 +159,8 @@
     document.getElementById("Username").value = StickyUser;
     document.getElementById("Name").value = StickyName;
     document.getElementById("Email").value = StickyEmail;
-    //document.getElementById(StickyGoal).checked = true;
+    document.getElementById(StickyGoal).checked = true;
     document.getElementById(StickyExperience).checked = true;
     document.getElementById(StickyWorkout).checked = true;
+    
 </script>
