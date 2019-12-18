@@ -197,7 +197,6 @@ app.post("/register", function (request, response) {
         haserrors = true;
     }
 
-
     //Turn errors object into strings so they can be input to URL.
     user_errors_string = JSON.stringify(user_errors.UsernameError);
     name_errors_string = JSON.stringify(name_errors.NameError);
@@ -210,7 +209,7 @@ app.post("/register", function (request, response) {
 
 
     //If valid turn form values into an object that is saved and stored in JSON file
-    
+    //Activate error flag
     if (haserrors == false) {
         users_reg_data[username] = {};
         users_reg_data[username].name = INFO.Name;
@@ -233,6 +232,8 @@ app.post("/register", function (request, response) {
         qstring = querystring.stringify(request.query);
 
         response.cookie('username', username, { maxAge: 60 * 1000 * 10 }).redirect("/generate_workout");
+        //request.session();
+        //response.redirect("output.html?" + qstring);
 
     } else {
         //If not valid add Errors string to query so they can be displayed on page
@@ -240,7 +241,7 @@ app.post("/register", function (request, response) {
         request.query.StickyName = INFO.Name;
         request.query.StickyEmail = INFO.Email;
 
-        //Create Checkbox error flag
+        //Create Checkbox flag
         BoxAlert = false;
 
         //Create unique ID names to generate stick radio data
@@ -312,16 +313,14 @@ app.get("/generate_workout", function (request, response) {
     user_data_JSON = fs.readFileSync(user_data_filename, 'utf-8');
     user_data = JSON.parse(user_data_JSON);
     theUserInfo = user_data[CookieUsername];
-
+    
     //ALL WORKOUTS
-    //Nested arrays for easy access and easy workout expansion, just have to add another variable and add that variable to its higher up array
-
     A_N_Push = [" Deadlift: 4x12", " Pullups: 4x10", " Seated Row: 4x12", " Lat Pull Down: 5x10", " DB Curls: 5x12"]; //Pull
     A_N_Pull = [" Squat: 4x12", " Quad Extension: 5x20", " Hamstring Curl: 5x12", " Gobblet Squat: 5x12", " Calve Raise: 4x20"]; //Legs
     A_N_Legs = [" Flat Bench: 4x12", " Inlcine Bench: 5x10", " Peck Deck: 5x12", " Front Shoulder Raise: 5x12", " Side Shoulder Raise: 5x12"]; //Push
     A_Novice_Array = [A_N_Push, A_N_Pull, A_N_Legs];
     A_A_Push = [" Deficit Deadlift: 5x10", " Weighted Pullups: 4x8", " Cross Cable Pull: 5x12", " Lat Pull Down: 5x10", " EZ Bar Curls: 5x12"]; //Pull
-    A_A_Pull = [" Squat: 4x12", " Romanian Deadlift: 5x12", " Quad Extension: 5x20", " Hamstring Curl: 5x12", " Calve Raise: 4x20"]; //Legs
+    A_A_Pull = [" Squat: 4x12", " Romanian Deadlift: 5x12", " Quad Extension: 5x20", " Hamstring Curl: 5x12",  " Calve Raise: 4x20"]; //Legs
     A_A_Legs = [" Flat Bench: 4x10", " Inlcine Dumbell Press: 5x12", " Cable Fly: 5x15", " DB Tricep Extension: 4x15", " Side Shoulder Raise: 5x12"]; //Push
     A_Advanced_Array = [A_A_Push, A_A_Pull, A_A_Legs];
 
@@ -343,7 +342,6 @@ app.get("/generate_workout", function (request, response) {
 
 
     //LOGIC GOES HERE
-    //Based on what they input for their experience level, last workout and goal the logic below will access the corresponding workout embedded in the nested arrays generated above
     //0 = Push, 1 = Pull, 2 = Legs
     Ex_Array = [0, 1, 2];
 
@@ -387,9 +385,7 @@ app.get("/generate_workout", function (request, response) {
 
     console.log(OfficalWorkout);
 
-    //Create HTML package with input variable to generate better looking page
-    //Wanted to try different ways of sending the HTML so I did this way and did a different way of just sending the html directly in the response.send for the information editing page below
-
+    //Creat HTML package with input variable to generate better looking page
     Official_Workout_Print = `<br><br><br><br><br><br><br><br><br>`;
     Official_Workout_Print += `<body style = "background-color: black; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif;");"><table align="center"`;
     Official_Workout_Print += `<tr><th style="font-size: 2em;">${theUserInfo.name}'s New Workout:</th></tr><tr><td style = "color: cornflowerblue">Ex1: ${OfficalWorkout[0]}</td></tr>`;
@@ -405,84 +401,77 @@ app.get("/generate_workout", function (request, response) {
     //Respone with HTML package
     response.send(Official_Workout_Print);
 
+    //Alter workout each time they log in
 
-    //Alter workout each time they log in 
     if (theUserInfo.last_workout == Ex_Array.length - 1) {
         theUserInfo.last_workout = 0;
     }
     else {
         theUserInfo.last_workout += 1;
     }
-    //Update user data using cookie info to find account
     users_reg_data[CookieUsername].last_workout = theUserInfo.last_workout;
     fs.writeFileSync(user_data_filename, JSON.stringify(users_reg_data));
 
     console.log("We Made it");
 
+
 });
 
-//Generate page in which they can edit their goals and experience level as they make progress in the gym
 app.get("/Edit", function (request, response) {
 
-    //Here is where I wanted to try inputing the HTML directly
-    response.send(
 
+response.send(
+    
     `<form name ="Edit_User_Data" method = "POST" action = "/Edit_User_Data">
     <br><br><br><br><br><br><br><br><br>
     <body style = "background-color: black; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif;">
     <table align = "center">
+    <tr><th colspan = 2 style="font-size: 2em;">Edit ${theUserInfo.name}'s Info:</th></tr>
     <tr>
-        <th colspan = 2 style="font-size: 2em;">Edit ${theUserInfo.name}'s Info:</th>
-    </tr>
-    <tr>
-        <td>
-            Fitness Goal:
-        </td>
-        <td>
-            <input id="Stronger" name="Goal" type="radio" value="Stronger"> Stronger <br>
-            <input id="Aesthetic" name="Goal" type="radio" value="Aesthetic"> Aesthetic <br>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Experience Level:
-        </td>
-        <td>
-            <input id = "Novice" name="Experience" type="radio" value="Novice"> Inexperienced <br>
-            <input id = "Advanced" name="Experience" type="radio" value="Advanced"> Experienced <br>
-        </td>
-    </tr>
-    <tr>
-        <td colspan = 2 align = "center">
-            <input style = "background-color: cornflowerblue; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer;" type="submit" name="submit" value="Update Info">
-            <a id="reg_link" href = "index.html"><button style="background-color: cornflowerblue; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer;" type="button">Return to Login</button></a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan = 2 align = "center">
-            Check Both Boxes To Continue
-        </td>
-    </tr>
-    </table>
-    </body>
-    </form>`
+    <td>
+        Fitness Goal:
+    </td>
+    <td>
+        <input id="Stronger" name="Goal" type="radio" value="Stronger"> Stronger <br>
+        <input id="Aesthetic" name="Goal" type="radio" value="Aesthetic"> Aesthetic <br>
+    </td>
+</tr>
+<tr>
+    <td>
+        Experience Level:
+    </td>
+    <td>
+        <input id = "Novice" name="Experience" type="radio" value="Novice"> Inexperienced <br>
+        <input id = "Advanced" name="Experience" type="radio" value="Advanced"> Experienced <br>
+    </td>
+</tr>
+<tr>
+<tr>
+<td colspan = 2 align = "center">
+<input style = "background-color: cornflowerblue; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer;" type="submit" name="submit" value="Update Info">
+<a id="reg_link" href = "index.html"><button style="background-color: cornflowerblue; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer;" type="button">Return to Login</button></a>
+</td>
+</tr>
+<tr>
+<td colspan = 2 align = "center">
+Check Both Boxes To Continue
+</td>
+</tr>
+</table></body></form>`
     );
 });
 
-//This is where you edit your goal and experience level as you time in the gym progresses
 app.post("/Edit_User_Data", function (request, response) {
     let INFO = request.body;
     console.log(CookieUsername);
-    //To ensure that the update info boxes are checked
-    if (typeof INFO.Goal == 'undefined' || typeof INFO.Experience == 'undefined') {
-        //If not send them back to the same page
-        response.redirect("/Edit");
+
+    if (typeof INFO.Goal == 'undefined' || typeof INFO.Experience == 'undefined') {   
+response.redirect("/Edit");
     } else {
-        //If inputs are valid edit the users information in the user_data.json file
-        users_reg_data[CookieUsername].goal = INFO.Goal;
-        users_reg_data[CookieUsername].experience = INFO.Experience;
-        fs.writeFileSync(user_data_filename, JSON.stringify(users_reg_data));
-        response.redirect("/generate_workout");
+       users_reg_data[CookieUsername].goal = INFO.Goal;
+    users_reg_data[CookieUsername].experience = INFO.Experience;
+    fs.writeFileSync(user_data_filename, JSON.stringify(users_reg_data)); 
+    response.redirect("/generate_workout");
     }
 
 });

@@ -15,18 +15,16 @@
         }
         //Takes data from url when page is invalid and puts it back (makes inputs sticky)
         if (params.has("StickyLoginUser")) {
-            StickyLoginUser = params.get("StickyLoginUser");
-            //Inputs sticky User so they know what they just put, passwords are never sticky so just for user.
-            document.getElementById("Userbox").value = StickyLoginUser;
+            StickyLoginUser = params.get("StickyLoginUser")
         }
     </script>
 
 </head>
 
 <body class="content">
-    <br><br><br><br><br><br><br>
-    <h1>The Daily Grind</h1>
-
+<br><br><br><br><br><br><br>
+   <h1>The Daily Grind</h1>
+    
 
     <Table>
         <tr>
@@ -43,12 +41,18 @@
         </tr>
         <tr>
             <td><input type="submit" value="Login Here" id="submit"></form>
-                <a id="reg_link" href="register.html"><button type="button">Register Here</button></a></td>
+            <a id="reg_link" href = "register.html"><button type="button">Register Here</button></a></td>
         </tr>
-
+        
 
     </Table>
 
 </body>
 
 </html>
+
+<script>
+    //Sends link with quantity data to pass to next page
+    //Inputs sticky User so they know what they just put, passwords are never sticky so just for user.
+    document.getElementById("Userbox").value = StickyLoginUser;
+</script>

@@ -112,6 +112,9 @@
                     <input id="Stronger" name="Goal" type="radio" value="Stronger"> Stronger <br>
                     <input id="Aesthetic" name="Goal" type="radio" value="Aesthetic"> Aesthetic <br>
                 </td>
+                <td id=GoalError class="RedBox">
+                        <script>//document.write(`${goal_error}`);</script>
+                    </td>
             </tr>
             <tr>
                 <td>
@@ -121,16 +124,22 @@
                     <input id = "Novice" name="Experience" type="radio" value="Novice"> Inexperienced <br>
                     <input id = "Advanced" name="Experience" type="radio" value="Advanced"> Experienced <br>
                 </td>
+                <td id=ExperienceError class="RedBox">
+                        <script>document.write(`${experience_error}`);</script>
+                    </td>
             </tr>
             <tr>
                 <td>
-                    Last Workout:
+                    First Workout:
                 </td>
                 <td>
                     <input id = "Workout0" name="Workout" type="radio" value=0> Push <br>
                     <input id = "Workout1" name="Workout" type="radio" value=1> Pull <br>
                     <input id = "Workout2" name="Workout" type="radio" value=2> Legs <br>
                 </td>
+                <td id=WorkoutError class="RedBox">
+                        <script>document.write(`${workout_error}`);</script>
+                    </td>
             </tr>
 <tr>
                 <td colspan="3" id="submit_reg"><input type="submit" name="submit" value="Register"></td>
