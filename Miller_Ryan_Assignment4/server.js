@@ -405,7 +405,6 @@ app.get("/generate_workout", function (request, response) {
     //Respone with HTML package
     response.send(Official_Workout_Print);
 
-
     //Alter workout each time they log in 
     if (theUserInfo.last_workout == Ex_Array.length - 1) {
         theUserInfo.last_workout = 0;
